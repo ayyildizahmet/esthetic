@@ -1,3 +1,5 @@
 class BaseResponseModel {
-  BaseResponseModel();
+  //BaseResponseModel();
+  bool success;
+  String message;
 }
