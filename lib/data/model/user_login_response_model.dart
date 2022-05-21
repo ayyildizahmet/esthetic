@@ -4,26 +4,26 @@ List<UserLoginResponseModel> userFromJson(String str) => List<UserLoginResponseM
 String userToJson(List<UserLoginResponseModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class UserLoginResponseModel {
-  UserLoginResponseModel({required this.token});
+  UserLoginResponseModel({required this.id, required this.firstname, required this.lastname, required this.email, required this.token});
 
-  // int id;
-  // String firstname;
-  // String lastname;
-  // String email;
+  int id;
+  String firstname;
+  String lastname;
+  String email;
   String token;
 
   factory UserLoginResponseModel.fromJson(Map<String, dynamic> json) => UserLoginResponseModel(
-        // id: json["id"],
-        // firstname: json["firstname"],
-        // lastname: json["lastname"],
-        // email: json["email"],
-        token: json["data"]["security"]["token"] ?? "",
+        id: json["id"],
+        firstname: json["firstname"],
+        lastname: json["lastname"],
+        email: json["email"],
+        token: json["token"],
       );
   Map<String, dynamic> toJson() => {
-        // "id": id,
-        // "firstname": firstname,
-        // "lastname": lastname,
-        // "email": email,
+        "id": id,
+        "firstname": firstname,
+        "lastname": lastname,
+        "email": email,
         "token": token
       };
 }
