@@ -10,7 +10,6 @@ void main() {
 //void main() => runApp(MyApp());
 
 void configLoading() {
-  //test
   EasyLoading.instance
     ..displayDuration = const Duration(milliseconds: 2000)
     ..indicatorType = EasyLoadingIndicatorType.fadingCircle
