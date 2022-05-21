@@ -10,7 +10,11 @@ class ApiService {
 
   Future<UserLoginResponseModel> login(UserLoginRequestModel userLoginRequestModel) async {
     print(userLoginRequestModel.toJson());
-    Response res = await post(Uri.parse(loginURL), body: userLoginRequestModel.toJson());
+    Response res = await post(Uri.parse(loginURL),
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: jsonEncode(userLoginRequestModel.toJson()));
     print("status = " + res.statusCode.toString());
     if (res.statusCode == 200 || res.statusCode == 400) {
       UserLoginResponseModel posts = UserLoginResponseModel.fromJson(jsonDecode(res.body));
