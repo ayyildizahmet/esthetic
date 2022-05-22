@@ -184,10 +184,18 @@ class _LoginScreenState extends State<LoginScreen> {
 
             api.login(userRequestModel).then((result) {
               // ignore: unnecessary_null_comparison
-              if (result != null && result.token != null && result.token.isNotEmpty) {
-                EasyLoading.showSuccess('Login Successfull');
+              if (result != null) {
+                if (result.success && result.token!.isNotEmpty) {
+                  EasyLoading.showSuccess('Login Successfull');
+                } else {
+                  if (result.message.isNotEmpty) {
+                    EasyLoading.showError(result.message);
+                  } else {
+                    EasyLoading.showError("Username or password is not correct");
+                  }
+                }
               } else {
-                EasyLoading.showError("Username or password is not correct");
+                EasyLoading.showError("Login api error.");
               }
             });
 
