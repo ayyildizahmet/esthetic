@@ -1,10 +1,11 @@
 class BaseResponseModel {
-  BaseResponseModel({required this.success, required this.message});
+  BaseResponseModel({required this.success, this.message});
 
   bool success;
-  String message;
+  String? message;
 
-  factory BaseResponseModel.fromJson(Map<String, dynamic> json) => BaseResponseModel(
+  factory BaseResponseModel.fromJson(Map<String, dynamic> json) =>
+      BaseResponseModel(
         success: json["success"],
         message: json["message"],
       );
