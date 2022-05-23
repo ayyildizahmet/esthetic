@@ -46,7 +46,7 @@ class _SignupScreenState extends State<SignupScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text(
-          'Username',
+          'Email',
           style: kLabelStyle,
         ),
         const SizedBox(height: 10.0),
@@ -70,7 +70,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 color: Colors.white,
               ),
               errorStyle: const TextStyle(color: Colors.white, fontFamily: 'OpenSans', decorationColor: Colors.white),
-              hintText: 'Enter your Username',
+              hintText: 'Enter your Email',
               hintStyle: kHintTextStyle,
             ),
           ),
@@ -93,7 +93,7 @@ class _SignupScreenState extends State<SignupScreen> {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           child: TextFormField(
-            validator: emailValidator,
+            //validator: emailValidator,
             onChanged: (input) => _email = input, //input,
             keyboardType: TextInputType.emailAddress,
             style: const TextStyle(
@@ -131,7 +131,7 @@ class _SignupScreenState extends State<SignupScreen> {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           child: TextFormField(
-            validator: emailValidator,
+            //validator: emailValidator,
             onChanged: (input) => _email = input, //input,
             keyboardType: TextInputType.emailAddress,
             style: const TextStyle(
@@ -147,6 +147,44 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
               errorStyle: const TextStyle(color: Colors.white, fontFamily: 'OpenSans', decorationColor: Colors.white),
               hintText: 'Enter your Lastname',
+              hintStyle: kHintTextStyle,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildPhoneTF() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          'Phone',
+          style: kLabelStyle,
+        ),
+        const SizedBox(height: 10.0),
+        Container(
+          alignment: Alignment.centerLeft,
+          decoration: kBoxDecorationStyle,
+          height: 60.0,
+          child: TextFormField(
+            validator: emailValidator,
+            onChanged: (input) => _email = input, //input,
+            keyboardType: TextInputType.emailAddress,
+            style: const TextStyle(
+              color: Colors.white,
+              fontFamily: 'OpenSans',
+            ),
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              contentPadding: const EdgeInsets.only(top: 14.0),
+              prefixIcon: Icon(
+                Icons.phone,
+                color: Colors.white,
+              ),
+              errorStyle: const TextStyle(color: Colors.white, fontFamily: 'OpenSans', decorationColor: Colors.white),
+              hintText: 'Enter your Mobile Phone',
               hintStyle: kHintTextStyle,
             ),
           ),
