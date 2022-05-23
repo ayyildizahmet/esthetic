@@ -355,6 +355,10 @@ class _SignupScreenState extends State<SignupScreen> {
                         const SizedBox(
                           height: 30.0,
                         ),
+                        _buildPhoneTF(),
+                        const SizedBox(
+                          height: 30.0,
+                        ),
                         _buildPasswordTF(),
                         const SizedBox(
                           height: 30.0,
