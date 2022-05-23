@@ -177,21 +177,6 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
-  Widget _buildSignInWithText() {
-    return Column(
-      children: <Widget>[
-        Text(
-          '- OR -',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w400,
-          ),
-        ),
-        SizedBox(height: 20.0),
-      ],
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -250,7 +235,6 @@ class _SignupScreenState extends State<SignupScreen> {
                         ),
                         _buildPasswordTF(),
                         _buildLoginBtn(),
-                        _buildSignInWithText(),
                       ])),
                 ),
               )
