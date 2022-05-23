@@ -10,7 +10,6 @@ class ApiService {
 
   Future<UserLoginResponseModel> login(UserLoginRequestModel userLoginRequestModel) async {
     print(userLoginRequestModel.toJson());
-    final client = new HttpClient();
     Response res = await post(Uri.parse(loginURL),
             headers: {
               "Content-Type": "application/json"
