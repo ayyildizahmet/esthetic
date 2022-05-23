@@ -3,10 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:esthetic/data/api.dart';
 import 'package:esthetic/utilities/constants.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:esthetic/data/model/user_signup_request_model.dart';
 import 'package:esthetic/data/model/user_signup_response_model.dart';
+
+
+
 
 class SignupScreen extends StatefulWidget {
   @override
@@ -45,8 +49,8 @@ class _SignupScreenState extends State<SignupScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text(
-          'Username',
+        Text
+          'Email',
           style: kLabelStyle,
         ),
         const SizedBox(height: 10.0),
@@ -70,7 +74,121 @@ class _SignupScreenState extends State<SignupScreen> {
                 color: Colors.white,
               ),
               errorStyle: const TextStyle(color: Colors.white, fontFamily: 'OpenSans', decorationColor: Colors.white),
-              hintText: 'Enter your Username',
+              hintText: 'Enter your Email',
+              hintStyle: kHintTextStyle,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildFirstnameTF() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          'Firstname',
+          style: kLabelStyle,
+        ),
+        const SizedBox(height: 10.0),
+        Container(
+          alignment: Alignment.centerLeft,
+          decoration: kBoxDecorationStyle,
+          height: 60.0,
+          child: TextFormField(
+            //validator: emailValidator,
+            onChanged: (input) => _email = input, //input,
+            keyboardType: TextInputType.emailAddress,
+            style: const TextStyle(
+              color: Colors.white,
+              fontFamily: 'OpenSans',
+            ),
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              contentPadding: const EdgeInsets.only(top: 14.0),
+              prefixIcon: Icon(
+                Icons.assignment_ind_sharp,
+                color: Colors.white,
+              ),
+              errorStyle: const TextStyle(color: Colors.white, fontFamily: 'OpenSans', decorationColor: Colors.white),
+              hintText: 'Enter your Firstname',
+              hintStyle: kHintTextStyle,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildLastnameTF() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          'Lastname',
+          style: kLabelStyle,
+        ),
+        const SizedBox(height: 10.0),
+        Container(
+          alignment: Alignment.centerLeft,
+          decoration: kBoxDecorationStyle,
+          height: 60.0,
+          child: TextFormField(
+            //validator: emailValidator,
+            onChanged: (input) => _email = input, //input,
+            keyboardType: TextInputType.emailAddress,
+            style: const TextStyle(
+              color: Colors.white,
+              fontFamily: 'OpenSans',
+            ),
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              contentPadding: const EdgeInsets.only(top: 14.0),
+              prefixIcon: Icon(
+                Icons.assignment_ind_sharp,
+                color: Colors.white,
+              ),
+              errorStyle: const TextStyle(color: Colors.white, fontFamily: 'OpenSans', decorationColor: Colors.white),
+              hintText: 'Enter your Lastname',
+              hintStyle: kHintTextStyle,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildPhoneTF() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          'Phone',
+          style: kLabelStyle,
+        ),
+        const SizedBox(height: 10.0),
+        Container(
+          alignment: Alignment.centerLeft,
+          decoration: kBoxDecorationStyle,
+          height: 60.0,
+          child: TextFormField(
+            //validator: emailValidator,
+            onChanged: (input) => _email = input, //input,
+            keyboardType: TextInputType.emailAddress,
+            style: const TextStyle(
+              color: Colors.white,
+              fontFamily: 'OpenSans',
+            ),
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              contentPadding: const EdgeInsets.only(top: 14.0),
+              prefixIcon: Icon(
+                Icons.phone,
+                color: Colors.white,
+              ),
+              errorStyle: const TextStyle(color: Colors.white, fontFamily: 'OpenSans', decorationColor: Colors.white),
+              hintText: 'Enter your Mobile Phone',
               hintStyle: kHintTextStyle,
             ),
           ),
@@ -123,47 +241,6 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
-  Widget _buildForgotPasswordBtn() {
-    return Container(
-      alignment: Alignment.centerRight,
-      child: FlatButton(
-        onPressed: () => print('Forgot Password Button Pressed'),
-        padding: const EdgeInsets.only(right: 0.0),
-        child: Text(
-          'Forgot Password?',
-          style: kLabelStyle,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildRememberMeCheckbox() {
-    return Container(
-      height: 20.0,
-      child: Row(
-        children: <Widget>[
-          Theme(
-            data: ThemeData(unselectedWidgetColor: Colors.white),
-            child: Checkbox(
-              value: _rememberMe,
-              checkColor: Colors.green,
-              activeColor: Colors.white,
-              onChanged: (value) {
-                setState(() {
-                  _rememberMe = value;
-                });
-              },
-            ),
-          ),
-          Text(
-            'Remember me',
-            style: kLabelStyle,
-          ),
-        ],
-      ),
-    );
-  }
-
   Widget _buildLoginBtn() {
     //ApiService api = ApiService();
     UserSignupRequestModel userRequestModel;
@@ -185,7 +262,7 @@ class _SignupScreenState extends State<SignupScreen> {
             //var result = await api.login(userRequestModel);
             ApiService api = ApiService();
 
-            api.signin(userRequestModel).then((result) {
+            api.signup(userRequestModel).then((result) {
               // ignore: unnecessary_null_comparison
               if (result != null && result.isSuccess == true) {
                 EasyLoading.showSuccess('Signin Successfull');
@@ -205,7 +282,7 @@ class _SignupScreenState extends State<SignupScreen> {
         ),
         color: Colors.white,
         child: const Text(
-          'LOGIN',
+          'REGISTER',
           style: TextStyle(
             color: Color(0xFF527DAA),
             letterSpacing: 1.5,
@@ -213,49 +290,6 @@ class _SignupScreenState extends State<SignupScreen> {
             fontWeight: FontWeight.bold,
             fontFamily: 'OpenSans',
           ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildSignInWithText() {
-    return Column(
-      children: <Widget>[
-        Text(
-          '- OR -',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w400,
-          ),
-        ),
-        SizedBox(height: 20.0),
-      ],
-    );
-  }
-
-  Widget _buildSignupBtn() {
-    return GestureDetector(
-      onTap: () => print('Sign Up Button Pressed'),
-      child: RichText(
-        text: TextSpan(
-          children: [
-            TextSpan(
-              text: 'Don\'t have an Account? ',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18.0,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-            TextSpan(
-              text: 'Sign Up',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
         ),
       ),
     );
@@ -317,12 +351,23 @@ class _SignupScreenState extends State<SignupScreen> {
                         const SizedBox(
                           height: 30.0,
                         ),
+                        _buildFirstnameTF(),
+                        const SizedBox(
+                          height: 30.0,
+                        ),
+                        _buildLastnameTF(),
+                        const SizedBox(
+                          height: 30.0,
+                        ),
+                        _buildPhoneTF(),
+                        const SizedBox(
+                          height: 30.0,
+                        ),
                         _buildPasswordTF(),
-                        _buildForgotPasswordBtn(),
-                        _buildRememberMeCheckbox(),
+                        const SizedBox(
+                          height: 30.0,
+                        ),
                         _buildLoginBtn(),
-                        _buildSignInWithText(),
-                        _buildSignupBtn(),
                       ])),
                 ),
               )
