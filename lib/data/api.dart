@@ -10,12 +10,14 @@ class ApiService {
 
   Future<UserLoginResponseModel> login(UserLoginRequestModel userLoginRequestModel) async {
     print(userLoginRequestModel.toJson());
+    final client = new HttpClient();
     Response res = await post(Uri.parse(loginURL),
             headers: {
               "Content-Type": "application/json"
             },
             body: jsonEncode(userLoginRequestModel.toJson()))
         .timeout(const Duration(seconds: 10){
+           
            return http.Response('Error', 408);
         });
     if (res.statusCode == 200 || res.statusCode == 400) {

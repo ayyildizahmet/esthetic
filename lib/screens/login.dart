@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:esthetic/screens/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:esthetic/data/api.dart';
@@ -242,7 +243,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget _buildSignupBtn() {
     return GestureDetector(
-      onTap: () => print('Sign Up Button Pressed'),
+      onTap: () => {
+        print('Sign Up Button Pressed'),
+        Navigator.push(context, MaterialPageRoute(builder: (signUpContext) => SignupScreen()))
+      },
       child: RichText(
         text: TextSpan(
           children: [
