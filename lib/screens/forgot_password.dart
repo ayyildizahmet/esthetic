@@ -1,27 +1,19 @@
 import 'dart:async';
-import 'package:esthetic/screens/sign_up.dart';
-import 'package:esthetic/screens/forgot_password.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:esthetic/data/api.dart';
 import 'package:esthetic/utilities/constants.dart';
-import 'package:esthetic/utilities/local_storage.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:esthetic/data/model/user_login_request_model.dart';
-import 'package:esthetic/data/model/user_login_response_model.dart';
 
-class LoginScreen extends StatefulWidget {
+class ForgotPasswordScreen extends StatefulWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _ForgotPasswordScreen createState() => _ForgotPasswordScreen();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _ForgotPasswordScreen extends State<ForgotPasswordScreen> {
   GlobalKey<FormState> globalFormKey = GlobalKey<FormState>();
-  LocalStorage localStorage = LocalStorage();
   String _email = "";
-  String _password = "";
-  bool? _rememberMe = false;
   Timer? _timer;
 
   @override
@@ -79,97 +71,9 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  final passwordValidator = MultiValidator([
-    RequiredValidator(errorText: ' * password is required'),
-    MinLengthValidator(6, errorText: ' * password must be at least 6 digits long'),
-    //PatternValidator(r'(?=.*?[#?!@$%^&*-])', errorText: ' * passwords must have at least one special character')
-  ]);
-
-  Widget _buildPasswordTF() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text(
-          'Password',
-          style: kLabelStyle,
-        ),
-        const SizedBox(height: 10.0),
-        Container(
-          alignment: Alignment.centerLeft,
-          decoration: kBoxDecorationStyle,
-          height: 60.0,
-          child: TextFormField(
-            onChanged: (input) => _password = input, //input,
-            validator: passwordValidator,
-            obscureText: true,
-            style: const TextStyle(
-              color: Colors.white,
-              fontFamily: 'OpenSans',
-            ),
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              contentPadding: const EdgeInsets.only(top: 14.0),
-              prefixIcon: const Icon(
-                Icons.lock,
-                color: Colors.white,
-              ),
-              errorStyle: const TextStyle(color: Colors.white, fontFamily: 'OpenSans', decorationColor: Colors.white),
-              hintText: 'Enter your Password',
-              hintStyle: kHintTextStyle,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildForgotPasswordBtn() {
-    return Container(
-      alignment: Alignment.centerRight,
-      child: FlatButton(
-        onPressed: () => {
-          print('Forgot Password Button Pressed'),
-          Navigator.push(context, MaterialPageRoute(builder: (signUpContext) => ForgotPasswordScreen()))
-        },
-        padding: const EdgeInsets.only(right: 0.0),
-        child: Text(
-          'Forgot Password?',
-          style: kLabelStyle,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildRememberMeCheckbox() {
-    return Container(
-      height: 20.0,
-      child: Row(
-        children: <Widget>[
-          Theme(
-            data: ThemeData(unselectedWidgetColor: Colors.white),
-            child: Checkbox(
-              value: _rememberMe,
-              checkColor: Colors.green,
-              activeColor: Colors.white,
-              onChanged: (value) {
-                setState(() {
-                  _rememberMe = value;
-                });
-              },
-            ),
-          ),
-          Text(
-            'Remember me',
-            style: kLabelStyle,
-          ),
-        ],
-      ),
-    );
-  }
-
   Widget _buildLoginBtn() {
     //ApiService api = ApiService();
-    UserLoginRequestModel userRequestModel;
+    //UserLoginRequestModel userRequestModel;
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 25.0),
       width: double.infinity,
@@ -184,27 +88,27 @@ class _LoginScreenState extends State<LoginScreen> {
             );
             //print('EasyLoading show');
 
-            userRequestModel = UserLoginRequestModel(password: _password, email: _email);
+            //userRequestModel = UserLoginRequestModel(password: _password, email: _email);
             //var result = await api.login(userRequestModel);
             ApiService api = ApiService();
 
-            await api.login(userRequestModel).then((result) {
-              // ignore: unnecessary_null_comparison
-              if (result != null) {
-                if (result.success) {
-                  localStorage.setString("token", result.token ?? "");
-                  EasyLoading.showSuccess('Login Successfull');
-                } else {
-                  if (result.message != null) {
-                    EasyLoading.showError(result.message ?? "");
-                  } else {
-                    EasyLoading.showError("Username or password is not correct");
-                  }
-                }
-              } else {
-                EasyLoading.showError("Login api error.");
-              }
-            });
+            // await api.login(userRequestModel).then((result) {
+            //   // ignore: unnecessary_null_comparison
+            //   if (result != null) {
+            //     if (result.success) {
+            //       localStorage.setString("token", result.token ?? "");
+            //       EasyLoading.showSuccess('Login Successfull');
+            //     } else {
+            //       if (result.message != null) {
+            //         EasyLoading.showError(result.message ?? "");
+            //       } else {
+            //         EasyLoading.showError("Username or password is not correct");
+            //       }
+            //     }
+            //   } else {
+            //     EasyLoading.showError("Login api error.");
+            //   }
+            // });
 
             _timer?.cancel();
             await EasyLoading.dismiss();
@@ -217,7 +121,7 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         color: Colors.white,
         child: const Text(
-          'LOGIN',
+          'FORGOT PASSWORD',
           style: TextStyle(
             color: Color(0xFF527DAA),
             letterSpacing: 1.5,
@@ -225,52 +129,6 @@ class _LoginScreenState extends State<LoginScreen> {
             fontWeight: FontWeight.bold,
             fontFamily: 'OpenSans',
           ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildSignInWithText() {
-    return Column(
-      children: <Widget>[
-        Text(
-          '- OR -',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w400,
-          ),
-        ),
-        SizedBox(height: 20.0),
-      ],
-    );
-  }
-
-  Widget _buildSignupBtn() {
-    return GestureDetector(
-      onTap: () => {
-        print('Sign Up Button Pressed'),
-        Navigator.push(context, MaterialPageRoute(builder: (signUpContext) => SignupScreen()))
-      },
-      child: RichText(
-        text: TextSpan(
-          children: [
-            TextSpan(
-              text: 'Don\'t have an Account? ',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18.0,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-            TextSpan(
-              text: 'Sign Up',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
         ),
       ),
     );
@@ -319,7 +177,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       key: globalFormKey,
                       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
                         Text(
-                          'Sign In',
+                          'Forgot Password',
                           style: const TextStyle(
                             color: Colors.white,
                             fontFamily: 'OpenSans',
@@ -332,12 +190,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         const SizedBox(
                           height: 30.0,
                         ),
-                        _buildPasswordTF(),
-                        _buildForgotPasswordBtn(),
-                        _buildRememberMeCheckbox(),
                         _buildLoginBtn(),
-                        _buildSignInWithText(),
-                        _buildSignupBtn(),
                       ])),
                 ),
               )
