@@ -79,6 +79,82 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
+  Widget _buildFirstnameTF() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          'Firstname',
+          style: kLabelStyle,
+        ),
+        const SizedBox(height: 10.0),
+        Container(
+          alignment: Alignment.centerLeft,
+          decoration: kBoxDecorationStyle,
+          height: 60.0,
+          child: TextFormField(
+            validator: emailValidator,
+            onChanged: (input) => _email = input, //input,
+            keyboardType: TextInputType.emailAddress,
+            style: const TextStyle(
+              color: Colors.white,
+              fontFamily: 'OpenSans',
+            ),
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              contentPadding: const EdgeInsets.only(top: 14.0),
+              prefixIcon: Icon(
+                Icons.email,
+                color: Colors.white,
+              ),
+              errorStyle: const TextStyle(color: Colors.white, fontFamily: 'OpenSans', decorationColor: Colors.white),
+              hintText: 'Enter your Username',
+              hintStyle: kHintTextStyle,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildLastnameTF() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          'Lastname',
+          style: kLabelStyle,
+        ),
+        const SizedBox(height: 10.0),
+        Container(
+          alignment: Alignment.centerLeft,
+          decoration: kBoxDecorationStyle,
+          height: 60.0,
+          child: TextFormField(
+            validator: emailValidator,
+            onChanged: (input) => _email = input, //input,
+            keyboardType: TextInputType.emailAddress,
+            style: const TextStyle(
+              color: Colors.white,
+              fontFamily: 'OpenSans',
+            ),
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              contentPadding: const EdgeInsets.only(top: 14.0),
+              prefixIcon: Icon(
+                Icons.email,
+                color: Colors.white,
+              ),
+              errorStyle: const TextStyle(color: Colors.white, fontFamily: 'OpenSans', decorationColor: Colors.white),
+              hintText: 'Enter your Username',
+              hintStyle: kHintTextStyle,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   final passwordValidator = MultiValidator([
     RequiredValidator(errorText: ' * password is required'),
     MinLengthValidator(6, errorText: ' * password must be at least 6 digits long'),
@@ -164,7 +240,7 @@ class _SignupScreenState extends State<SignupScreen> {
         ),
         color: Colors.white,
         child: const Text(
-          'LOGIN',
+          'REGISTER',
           style: TextStyle(
             color: Color(0xFF527DAA),
             letterSpacing: 1.5,
@@ -233,6 +309,8 @@ class _SignupScreenState extends State<SignupScreen> {
                         const SizedBox(
                           height: 30.0,
                         ),
+                        _buildFirstnameTF(),
+                        _buildLastnameTF(),
                         _buildPasswordTF(),
                         _buildLoginBtn(),
                       ])),
