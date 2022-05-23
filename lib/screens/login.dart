@@ -183,12 +183,13 @@ class _LoginScreenState extends State<LoginScreen> {
             //var result = await api.login(userRequestModel);
             ApiService api = ApiService();
 
-            api.login(userRequestModel).then((result) {
+            api.login(userRequestModel).then((result) async {
               // ignore: unnecessary_null_comparison
               if (result != null) {
                 if (result.success) {
-                  EasyLoading.showSuccess('Login Successfull');
                   localStorage.setString("token", result.token ?? "");
+                  String token = await localStorage.getString("token") ?? "";
+                  EasyLoading.showSuccess('Login Successfull' + token);
                 } else {
                   if (result.message != null) {
                     EasyLoading.showError(result.message ?? "");
