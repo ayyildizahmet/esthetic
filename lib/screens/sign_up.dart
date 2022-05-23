@@ -185,7 +185,7 @@ class _SignupScreenState extends State<SignupScreen> {
             //var result = await api.login(userRequestModel);
             ApiService api = ApiService();
 
-            api.signin(userRequestModel).then((result) {
+            api.signup(userRequestModel).then((result) {
               // ignore: unnecessary_null_comparison
               if (result != null && result.isSuccess == true) {
                 EasyLoading.showSuccess('Signin Successfull');
