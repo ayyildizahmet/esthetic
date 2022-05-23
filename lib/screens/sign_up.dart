@@ -169,7 +169,7 @@ class _SignupScreenState extends State<SignupScreen> {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           child: TextFormField(
-            validator: emailValidator,
+            //validator: emailValidator,
             onChanged: (input) => _email = input, //input,
             keyboardType: TextInputType.emailAddress,
             style: const TextStyle(
