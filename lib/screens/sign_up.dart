@@ -205,7 +205,7 @@ class _SignupScreenState extends State<SignupScreen> {
         ),
         color: Colors.white,
         child: const Text(
-          'LOGIN',
+          'SIGN UP',
           style: TextStyle(
             color: Color(0xFF527DAA),
             letterSpacing: 1.5,
