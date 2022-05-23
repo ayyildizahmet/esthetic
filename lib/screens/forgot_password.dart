@@ -71,7 +71,7 @@ class _ForgotPasswordScreen extends State<ForgotPasswordScreen> {
     );
   }
 
-  Widget _buildLoginBtn() {
+  Widget _buildForgotPasswordBtn() {
     //ApiService api = ApiService();
     //UserLoginRequestModel userRequestModel;
     return Container(
@@ -190,7 +190,7 @@ class _ForgotPasswordScreen extends State<ForgotPasswordScreen> {
                         const SizedBox(
                           height: 30.0,
                         ),
-                        _buildLoginBtn(),
+                        _buildForgotPasswordBtn(),
                       ])),
                 ),
               )
