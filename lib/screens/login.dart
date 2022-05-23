@@ -174,7 +174,7 @@ class _LoginScreenState extends State<LoginScreen> {
           if (validateAndSave()) {
             _timer?.cancel();
             await EasyLoading.show(
-              status: 'test',
+              status: '',
               maskType: EasyLoadingMaskType.black,
             );
             //print('EasyLoading show');
