@@ -38,7 +38,7 @@ class _ForgotPasswordScreen extends State<ForgotPasswordScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text(
-          'Username',
+          'Email',
           style: kLabelStyle,
         ),
         const SizedBox(height: 10.0),
@@ -62,7 +62,7 @@ class _ForgotPasswordScreen extends State<ForgotPasswordScreen> {
                 color: Colors.white,
               ),
               errorStyle: const TextStyle(color: Colors.white, fontFamily: 'OpenSans', decorationColor: Colors.white),
-              hintText: 'Enter your Username',
+              hintText: 'Enter your Email',
               hintStyle: kHintTextStyle,
             ),
           ),
