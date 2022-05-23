@@ -15,7 +15,9 @@ class ApiService {
               "Content-Type": "application/json"
             },
             body: jsonEncode(userLoginRequestModel.toJson()))
-        .timeout(const Duration(seconds: 10));
+        .timeout(const Duration(seconds: 10){
+           return http.Response('Error', 408);
+        });
     if (res.statusCode == 200 || res.statusCode == 400) {
       UserLoginResponseModel posts = UserLoginResponseModel.fromJson(jsonDecode(res.body));
       return posts;
