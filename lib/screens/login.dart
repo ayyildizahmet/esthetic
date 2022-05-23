@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:esthetic/data/api.dart';
 import 'package:esthetic/utilities/constants.dart';
+import 'package:esthetic/utilities/local_storage.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:esthetic/data/model/user_login_request_model.dart';
@@ -15,6 +16,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   GlobalKey<FormState> globalFormKey = GlobalKey<FormState>();
+  LocalStorage localStorage = LocalStorage();
   String _email = "";
   String _password = "";
   bool? _rememberMe = false;
@@ -33,8 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   final emailValidator = MultiValidator([
     RequiredValidator(errorText: ' * email is required'),
-    MinLengthValidator(6,
-        errorText: ' * password must be at least 6 digits long'),
+    MinLengthValidator(6, errorText: ' * password must be at least 6 digits long'),
     //PatternValidator(r'(?=.*?[#?!@$%^&*-])', errorText: ' * passwords must have at least one special character')
   ]);
 
@@ -66,10 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Icons.email,
                 color: Colors.white,
               ),
-              errorStyle: const TextStyle(
-                  color: Colors.white,
-                  fontFamily: 'OpenSans',
-                  decorationColor: Colors.white),
+              errorStyle: const TextStyle(color: Colors.white, fontFamily: 'OpenSans', decorationColor: Colors.white),
               hintText: 'Enter your Username',
               hintStyle: kHintTextStyle,
             ),
@@ -81,8 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   final passwordValidator = MultiValidator([
     RequiredValidator(errorText: ' * password is required'),
-    MinLengthValidator(6,
-        errorText: ' * password must be at least 6 digits long'),
+    MinLengthValidator(6, errorText: ' * password must be at least 6 digits long'),
     //PatternValidator(r'(?=.*?[#?!@$%^&*-])', errorText: ' * passwords must have at least one special character')
   ]);
 
@@ -114,10 +111,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Icons.lock,
                 color: Colors.white,
               ),
-              errorStyle: const TextStyle(
-                  color: Colors.white,
-                  fontFamily: 'OpenSans',
-                  decorationColor: Colors.white),
+              errorStyle: const TextStyle(color: Colors.white, fontFamily: 'OpenSans', decorationColor: Colors.white),
               hintText: 'Enter your Password',
               hintStyle: kHintTextStyle,
             ),
@@ -185,8 +179,7 @@ class _LoginScreenState extends State<LoginScreen> {
             );
             //print('EasyLoading show');
 
-            userRequestModel =
-                UserLoginRequestModel(password: _password, email: _email);
+            userRequestModel = UserLoginRequestModel(password: _password, email: _email);
             //var result = await api.login(userRequestModel);
             ApiService api = ApiService();
 
@@ -195,12 +188,12 @@ class _LoginScreenState extends State<LoginScreen> {
               if (result != null) {
                 if (result.success) {
                   EasyLoading.showSuccess('Login Successfull');
+                  localStorage.setString("token", result.token ?? "");
                 } else {
                   if (result.message != null) {
                     EasyLoading.showError(result.message ?? "");
                   } else {
-                    EasyLoading.showError(
-                        "Username or password is not correct");
+                    EasyLoading.showError("Username or password is not correct");
                   }
                 }
               } else {
@@ -297,7 +290,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       const Color(0xFF478DE0),
                       const Color(0xFF398AE5),
                     ],
-                    stops: [0.1, 0.4, 0.7, 0.9],
+                    stops: [
+                      0.1,
+                      0.4,
+                      0.7,
+                      0.9
+                    ],
                   ),
                 ),
               ),
@@ -311,30 +309,28 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   child: Form(
                       key: globalFormKey,
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text(
-                              'Sign In',
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontFamily: 'OpenSans',
-                                fontSize: 30.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const SizedBox(height: 30.0),
-                            _buildEmailTF(),
-                            const SizedBox(
-                              height: 30.0,
-                            ),
-                            _buildPasswordTF(),
-                            _buildForgotPasswordBtn(),
-                            _buildRememberMeCheckbox(),
-                            _buildLoginBtn(),
-                            _buildSignInWithText(),
-                            _buildSignupBtn(),
-                          ])),
+                      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+                        Text(
+                          'Sign In',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'OpenSans',
+                            fontSize: 30.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 30.0),
+                        _buildEmailTF(),
+                        const SizedBox(
+                          height: 30.0,
+                        ),
+                        _buildPasswordTF(),
+                        _buildForgotPasswordBtn(),
+                        _buildRememberMeCheckbox(),
+                        _buildLoginBtn(),
+                        _buildSignInWithText(),
+                        _buildSignupBtn(),
+                      ])),
                 ),
               )
             ],

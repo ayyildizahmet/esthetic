@@ -12,7 +12,7 @@ void main() {
 void configLoading() {
   //test
   EasyLoading.instance
-    ..displayDuration = const Duration(milliseconds: 4000)
+    ..displayDuration = const Duration(milliseconds: 2000)
     ..indicatorType = EasyLoadingIndicatorType.fadingCircle
     ..loadingStyle = EasyLoadingStyle.dark
     ..indicatorSize = 45.0
