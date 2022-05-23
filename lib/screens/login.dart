@@ -172,18 +172,18 @@ class _LoginScreenState extends State<LoginScreen> {
         elevation: 5.0,
         onPressed: () async {
           if (validateAndSave()) {
+            _timer?.cancel();
+            await EasyLoading.show(
+              status: 'test',
+              maskType: EasyLoadingMaskType.black,
+            );
             //print('EasyLoading show');
 
             userRequestModel = UserLoginRequestModel(password: _password, email: _email);
             //var result = await api.login(userRequestModel);
             ApiService api = ApiService();
 
-            api.login(userRequestModel).then((result) async {
-              _timer?.cancel();
-              await EasyLoading.show(
-                status: 'test',
-                maskType: EasyLoadingMaskType.black,
-              );
+            await api.login(userRequestModel).then((result) {
               // ignore: unnecessary_null_comparison
               if (result != null) {
                 if (result.success) {
