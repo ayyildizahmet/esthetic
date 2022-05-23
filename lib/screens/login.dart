@@ -188,8 +188,7 @@ class _LoginScreenState extends State<LoginScreen> {
               if (result != null) {
                 if (result.success) {
                   localStorage.setString("token", result.token ?? "");
-                  String token = await localStorage.getString("token") ?? "";
-                  EasyLoading.showSuccess('Login Successfull' + token);
+                  EasyLoading.showSuccess('Login Successfull');
                 } else {
                   if (result.message != null) {
                     EasyLoading.showError(result.message ?? "");
