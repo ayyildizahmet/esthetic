@@ -8,6 +8,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:esthetic/data/model/user_signup_request_model.dart';
 import 'package:esthetic/data/model/user_signup_response_model.dart';
+import 'package:intl/intl.dart';
 
 class SignupScreen extends StatefulWidget {
   @override
@@ -16,6 +17,7 @@ class SignupScreen extends StatefulWidget {
 
 class _SignupScreenState extends State<SignupScreen> {
   GlobalKey<FormState> globalFormKey = GlobalKey<FormState>();
+  TextEditingController dateinput = TextEditingController();
   String _email = "";
   String _firstname = "";
   String _lastname = "";
@@ -80,6 +82,12 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
+  final firstnameValidator = MultiValidator([
+    RequiredValidator(errorText: ' * firstname is required'),
+    MinLengthValidator(2, errorText: ' * password must be at least 2 digits long'),
+    //PatternValidator(r'(?=.*?[#?!@$%^&*-])', errorText: ' * passwords must have at least one special character')
+  ]);
+
   Widget _buildFirstnameTF() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,7 +102,7 @@ class _SignupScreenState extends State<SignupScreen> {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           child: TextFormField(
-            //validator: emailValidator,
+            validator: firstnameValidator,
             onChanged: (input) => _email = input, //input,
             keyboardType: TextInputType.emailAddress,
             style: const TextStyle(
@@ -118,6 +126,12 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
+  final lastnameValidator = MultiValidator([
+    RequiredValidator(errorText: ' * firstname is required'),
+    MinLengthValidator(2, errorText: ' * password must be at least 2 digits long'),
+    //PatternValidator(r'(?=.*?[#?!@$%^&*-])', errorText: ' * passwords must have at least one special character')
+  ]);
+
   Widget _buildLastnameTF() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -132,7 +146,7 @@ class _SignupScreenState extends State<SignupScreen> {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           child: TextFormField(
-            //validator: emailValidator,
+            validator: lastnameValidator,
             onChanged: (input) => _email = input, //input,
             keyboardType: TextInputType.emailAddress,
             style: const TextStyle(
@@ -243,6 +257,18 @@ class _SignupScreenState extends State<SignupScreen> {
       ],
     );
   }
+
+//  Widget _buildBirthDateTF() {
+//    return Column(
+//      crossAxisAlignment: CrossAxisAlignment.start,
+//      child: TextField(
+//                controller: dateinput, //editing controller of this TextField
+//               decoration: InputDecoration(
+//                   icon: Icon(Icons.calendar_today), //icon of text field
+//                   labelText: "Enter Date" //label text of field
+//               ),
+//  );
+// }
 
   Widget _buildSignUpBtn() {
     //ApiService api = ApiService();
