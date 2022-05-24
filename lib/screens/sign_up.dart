@@ -171,6 +171,7 @@ class _SignupScreenState extends State<SignupScreen> {
             height: 60.0,
             child: IntlPhoneField(
               style: kLabelStyle,
+              flagsButtonMargin: const EdgeInsets.only(top: 20.0),
               // decoration: const InputDecoration(
               //   labelText: 'Phone Number',
               //   border: OutlineInputBorder(
@@ -180,10 +181,7 @@ class _SignupScreenState extends State<SignupScreen> {
               decoration: InputDecoration(
                 border: InputBorder.none,
                 contentPadding: const EdgeInsets.only(top: 54.0),
-                prefixIcon: const Icon(
-                  Icons.assignment_ind_sharp,
-                  color: Colors.white,
-                ),
+
                 errorStyle: const TextStyle(color: Colors.white, fontFamily: 'OpenSans', decorationColor: Colors.white),
                 hintText: 'Enter your phone',
                 //labelText: 'Phone Number',
