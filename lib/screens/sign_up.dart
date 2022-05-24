@@ -102,9 +102,12 @@ class _SignupScreenState extends State<SignupScreen> {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           child: TextFormField(
+            inputFormatters: [
+              new WhitelistingTextInputFormatter(RegExp("[a-zA-Z]")),
+            ],
+            keyboardType: TextInputType.text,
             validator: firstnameValidator,
             onChanged: (input) => _email = input, //input,
-            keyboardType: TextInputType.text,
             style: const TextStyle(
               color: Colors.white,
               fontFamily: 'OpenSans',
@@ -146,9 +149,12 @@ class _SignupScreenState extends State<SignupScreen> {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           child: TextFormField(
+            inputFormatters: [
+              new WhitelistingTextInputFormatter(RegExp("[a-zA-Z]")),
+            ],
+            keyboardType: TextInputType.text,
             validator: lastnameValidator,
             onChanged: (input) => _email = input, //input,
-            keyboardType: TextInputType.emailAddress,
             style: const TextStyle(
               color: Colors.white,
               fontFamily: 'OpenSans',
