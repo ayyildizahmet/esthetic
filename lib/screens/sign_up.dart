@@ -161,7 +161,7 @@ class _SignupScreenState extends State<SignupScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text(
-          'Lastname',
+          'Mobile Phone',
           style: kLabelStyle,
         ),
         const SizedBox(height: 10.0),
@@ -170,6 +170,7 @@ class _SignupScreenState extends State<SignupScreen> {
             decoration: kBoxDecorationStyle,
             height: 60.0,
             child: IntlPhoneField(
+              style: kLabelStyle,
               // decoration: const InputDecoration(
               //   labelText: 'Phone Number',
               //   border: OutlineInputBorder(
