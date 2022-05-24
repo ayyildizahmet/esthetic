@@ -104,7 +104,7 @@ class _SignupScreenState extends State<SignupScreen> {
           child: TextFormField(
             validator: firstnameValidator,
             onChanged: (input) => _email = input, //input,
-            keyboardType: TextInputType.emailAddress,
+            keyboardType: TextInputType.text,
             style: const TextStyle(
               color: Colors.white,
               fontFamily: 'OpenSans',
