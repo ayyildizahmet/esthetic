@@ -38,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final emailValidator = MultiValidator([
     RequiredValidator(errorText: ' * email is required'),
     MinLengthValidator(6, errorText: ' * password must be at least 6 digits long'),
-    //PatternValidator(r'(?=.*?[#?!@$%^&*-])', errorText: ' * passwords must have at least one special character')
+    MaxLengthValidator(100, errorText: ' * password must be maximum of 100 digits long'),
   ]);
 
   Widget _buildEmailTF() {
@@ -46,7 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text(
-          'Username',
+          'Email',
           style: kLabelStyle,
         ),
         const SizedBox(height: 10.0),
@@ -70,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 color: Colors.white,
               ),
               errorStyle: const TextStyle(color: Colors.white, fontFamily: 'OpenSans', decorationColor: Colors.white),
-              hintText: 'Enter your Username',
+              hintText: 'Enter your Email',
               hintStyle: kHintTextStyle,
             ),
           ),
