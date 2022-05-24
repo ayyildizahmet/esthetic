@@ -180,8 +180,8 @@ class _SignupScreenState extends State<SignupScreen> {
               // ),
               decoration: InputDecoration(
                 border: InputBorder.none,
-                contentPadding: const EdgeInsets.only(top: 54.0),
-
+                contentPadding: const EdgeInsets.only(top: 20.0),
+                counterStyle: kLabelStyle,
                 errorStyle: const TextStyle(color: Colors.white, fontFamily: 'OpenSans', decorationColor: Colors.white),
                 hintText: 'Enter your phone',
                 //labelText: 'Phone Number',
