@@ -127,7 +127,7 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 
   final lastnameValidator = MultiValidator([
-    RequiredValidator(errorText: ' * firstname is required'),
+    RequiredValidator(errorText: ' * lastname is required'),
     MinLengthValidator(2, errorText: ' * password must be at least 2 digits long'),
     //PatternValidator(r'(?=.*?[#?!@$%^&*-])', errorText: ' * passwords must have at least one special character')
   ]);
