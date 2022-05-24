@@ -179,7 +179,7 @@ class _SignupScreenState extends State<SignupScreen> {
               // ),
               decoration: InputDecoration(
                 border: InputBorder.none,
-                contentPadding: const EdgeInsets.only(top: 24.0),
+                contentPadding: const EdgeInsets.only(top: 54.0),
                 prefixIcon: const Icon(
                   Icons.assignment_ind_sharp,
                   color: Colors.white,
