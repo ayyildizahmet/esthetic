@@ -103,7 +103,7 @@ class _SignupScreenState extends State<SignupScreen> {
           height: 60.0,
           child: TextFormField(
             inputFormatters: [
-              new WhitelistingTextInputFormatter(RegExp("[a-zA-Z]")),
+              FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]')),
             ],
             keyboardType: TextInputType.text,
             validator: firstnameValidator,
@@ -150,7 +150,7 @@ class _SignupScreenState extends State<SignupScreen> {
           height: 60.0,
           child: TextFormField(
             inputFormatters: [
-              new WhitelistingTextInputFormatter(RegExp("[a-zA-Z]")),
+              FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]')),
             ],
             keyboardType: TextInputType.text,
             validator: lastnameValidator,
