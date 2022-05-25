@@ -5,13 +5,13 @@ List<UserSignupResponseModel> userFromJson(String str) => List<UserSignupRespons
 String userToJson(List<UserSignupResponseModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class UserSignupResponseModel extends BaseResponseModel {
-  UserSignupResponseModel({success, message, required this.isSuccess})
+  UserSignupResponseModel({success, message, this.isSuccess})
       : super(
           success: success,
           message: message,
         );
 
-  bool isSuccess;
+  bool? isSuccess;
 
   factory UserSignupResponseModel.fromJson(Map<String, dynamic> json) => UserSignupResponseModel(
         success: json["success"],
