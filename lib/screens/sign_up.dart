@@ -22,6 +22,7 @@ class _SignupScreenState extends State<SignupScreen> {
   String _firstname = "";
   String _lastname = "";
   String _phone = "";
+  String _countryCode = "";
   String _password = "";
 
   bool? _rememberMe = false;
@@ -40,7 +41,8 @@ class _SignupScreenState extends State<SignupScreen> {
 
   final emailValidator = MultiValidator([
     RequiredValidator(errorText: ' * email is required'),
-    MinLengthValidator(6, errorText: ' * password must be at least 6 digits long'),
+    MinLengthValidator(6,
+        errorText: ' * password must be at least 6 digits long'),
   ]);
 
   Widget _buildEmailTF() {
@@ -71,7 +73,10 @@ class _SignupScreenState extends State<SignupScreen> {
                 Icons.email,
                 color: Colors.white,
               ),
-              errorStyle: const TextStyle(color: Colors.white, fontFamily: 'OpenSans', decorationColor: Colors.white),
+              errorStyle: const TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'OpenSans',
+                  decorationColor: Colors.white),
               hintText: 'Enter your Email',
               hintStyle: kHintTextStyle,
             ),
@@ -83,7 +88,8 @@ class _SignupScreenState extends State<SignupScreen> {
 
   final firstnameValidator = MultiValidator([
     RequiredValidator(errorText: ' * firstname is required'),
-    MinLengthValidator(2, errorText: ' * password must be at least 2 digits long'),
+    MinLengthValidator(2,
+        errorText: ' * password must be at least 2 digits long'),
     //PatternValidator(r'(?=.*?[#?!@$%^&*-])', errorText: ' * passwords must have at least one special character')
   ]);
 
@@ -118,7 +124,10 @@ class _SignupScreenState extends State<SignupScreen> {
                 Icons.assignment_ind_sharp,
                 color: Colors.white,
               ),
-              errorStyle: const TextStyle(color: Colors.white, fontFamily: 'OpenSans', decorationColor: Colors.white),
+              errorStyle: const TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'OpenSans',
+                  decorationColor: Colors.white),
               hintText: 'Enter your Firstname',
               hintStyle: kHintTextStyle,
             ),
@@ -130,7 +139,8 @@ class _SignupScreenState extends State<SignupScreen> {
 
   final lastnameValidator = MultiValidator([
     RequiredValidator(errorText: ' * lastname is required'),
-    MinLengthValidator(2, errorText: ' * password must be at least 2 digits long'),
+    MinLengthValidator(2,
+        errorText: ' * password must be at least 2 digits long'),
     //PatternValidator(r'(?=.*?[#?!@$%^&*-])', errorText: ' * passwords must have at least one special character')
   ]);
 
@@ -165,7 +175,10 @@ class _SignupScreenState extends State<SignupScreen> {
                 Icons.assignment_ind_sharp,
                 color: Colors.white,
               ),
-              errorStyle: const TextStyle(color: Colors.white, fontFamily: 'OpenSans', decorationColor: Colors.white),
+              errorStyle: const TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'OpenSans',
+                  decorationColor: Colors.white),
               hintText: 'Enter your Lastname',
               hintStyle: kHintTextStyle,
             ),
@@ -201,7 +214,10 @@ class _SignupScreenState extends State<SignupScreen> {
                 border: InputBorder.none,
                 contentPadding: const EdgeInsets.only(top: 28.0),
                 counterStyle: kLabelStyle,
-                errorStyle: const TextStyle(color: Colors.white, fontFamily: 'OpenSans', decorationColor: Colors.white),
+                errorStyle: const TextStyle(
+                    color: Colors.white,
+                    fontFamily: 'OpenSans',
+                    decorationColor: Colors.white),
                 hintText: 'Enter your phone',
                 //labelText: 'Phone Number',
                 hintStyle: kHintTextStyle,
@@ -209,7 +225,8 @@ class _SignupScreenState extends State<SignupScreen> {
               initialCountryCode: 'TR',
               invalidNumberMessage: " * Invalid Phone Number",
               onChanged: (input) {
-                _phone = input.toString();
+                _countryCode = input.countryCode;
+                _phone = input.number;
               },
               onCountryChanged: (country) {
                 print('Country changed to: ' + country.name);
@@ -221,7 +238,8 @@ class _SignupScreenState extends State<SignupScreen> {
 
   final passwordValidator = MultiValidator([
     RequiredValidator(errorText: ' * password is required'),
-    MinLengthValidator(6, errorText: ' * password must be at least 6 digits long'),
+    MinLengthValidator(6,
+        errorText: ' * password must be at least 6 digits long'),
     //PatternValidator(r'(?=.*?[#?!@$%^&*-])', errorText: ' * passwords must have at least one special character')
   ]);
 
@@ -253,7 +271,10 @@ class _SignupScreenState extends State<SignupScreen> {
                 Icons.lock,
                 color: Colors.white,
               ),
-              errorStyle: const TextStyle(color: Colors.white, fontFamily: 'OpenSans', decorationColor: Colors.white),
+              errorStyle: const TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'OpenSans',
+                  decorationColor: Colors.white),
               hintText: 'Enter your Password',
               hintStyle: kHintTextStyle,
             ),
@@ -292,7 +313,13 @@ class _SignupScreenState extends State<SignupScreen> {
             );
             //print('EasyLoading show');
 
-            userRequestModel = UserSignupRequestModel(email: _email, firstname: _firstname, lastname: _lastname, phone: _phone, password: _password);
+            userRequestModel = UserSignupRequestModel(
+                email: _email,
+                firstname: _firstname,
+                lastname: _lastname,
+                phone: _phone,
+                countryCode: _countryCode,
+                password: _password);
             //var result = await api.login(userRequestModel);
             ApiService api = ApiService();
             await api.signup(userRequestModel).then((result) {
@@ -353,12 +380,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       const Color(0xFF478DE0),
                       const Color(0xFF398AE5),
                     ],
-                    stops: [
-                      0.1,
-                      0.4,
-                      0.7,
-                      0.9
-                    ],
+                    stops: [0.1, 0.4, 0.7, 0.9],
                   ),
                 ),
               ),
@@ -372,39 +394,41 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                   child: Form(
                       key: globalFormKey,
-                      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-                        Text(
-                          'Sign Up',
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontFamily: 'OpenSans',
-                            fontSize: 30.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 30.0),
-                        _buildEmailTF(),
-                        const SizedBox(
-                          height: 30.0,
-                        ),
-                        _buildFirstnameTF(),
-                        const SizedBox(
-                          height: 30.0,
-                        ),
-                        _buildLastnameTF(),
-                        const SizedBox(
-                          height: 30.0,
-                        ),
-                        _buildPhoneTF(),
-                        const SizedBox(
-                          height: 30.0,
-                        ),
-                        _buildPasswordTF(),
-                        const SizedBox(
-                          height: 30.0,
-                        ),
-                        _buildSignUpBtn(),
-                      ])),
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              'Sign Up',
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontFamily: 'OpenSans',
+                                fontSize: 30.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const SizedBox(height: 30.0),
+                            _buildEmailTF(),
+                            const SizedBox(
+                              height: 30.0,
+                            ),
+                            _buildFirstnameTF(),
+                            const SizedBox(
+                              height: 30.0,
+                            ),
+                            _buildLastnameTF(),
+                            const SizedBox(
+                              height: 30.0,
+                            ),
+                            _buildPhoneTF(),
+                            const SizedBox(
+                              height: 30.0,
+                            ),
+                            _buildPasswordTF(),
+                            const SizedBox(
+                              height: 30.0,
+                            ),
+                            _buildSignUpBtn(),
+                          ])),
                 ),
               )
             ],
