@@ -299,7 +299,7 @@ class _SignupScreenState extends State<SignupScreen> {
             api.signup(userRequestModel).then((result) {
               // ignore: unnecessary_null_comparison
               if (result != null && result.isSuccess == true) {
-                EasyLoading.showSuccess('Sign Up Successfull');
+                EasyLoading.showSuccess(result.message);
               } else {
                 EasyLoading.showError("Sign Up is not successful");
               }

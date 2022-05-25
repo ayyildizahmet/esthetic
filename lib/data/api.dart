@@ -7,8 +7,8 @@ import 'model/user_login_response_model.dart';
 
 class ApiService {
   final String baseURL = "http://ayyildiz.xyz:8090/";
-  final String loginURL = "/api/auth/login";
-  final String signupURL = "/api/auth/register";
+  final String loginURL = "api/auth/login";
+  final String signupURL = "api/auth/register";
 
   Future<UserLoginResponseModel> login(UserLoginRequestModel userLoginRequestModel) async {
     Response res = await post(Uri.parse(baseURL + loginURL),
