@@ -26,7 +26,7 @@ class ApiService {
   }
 
   Future<UserSignupResponseModel> signup(UserSignupRequestModel userSignupRequestModel) async {
-    Response res = await post(Uri.parse(baseURL + signupURL), body: userSignupRequestModel.toJson()).timeout(const Duration(seconds: 10));
+    Response res = await post(Uri.parse(baseURL + signupURL), body: jsonEncode(userSignupRequestModel.toJson()));
     if (res.statusCode == 200 || res.statusCode == 400) {
       UserSignupResponseModel posts = UserSignupResponseModel.fromJson(jsonDecode(res.body));
       return posts;
