@@ -41,7 +41,6 @@ class _SignupScreenState extends State<SignupScreen> {
   final emailValidator = MultiValidator([
     RequiredValidator(errorText: ' * email is required'),
     MinLengthValidator(6, errorText: ' * password must be at least 6 digits long'),
-    //PatternValidator(r'(?=.*?[#?!@$%^&*-])', errorText: ' * passwords must have at least one special character')
   ]);
 
   Widget _buildEmailTF() {
@@ -107,7 +106,7 @@ class _SignupScreenState extends State<SignupScreen> {
             ],
             keyboardType: TextInputType.text,
             validator: firstnameValidator,
-            onChanged: (input) => _email = input, //input,
+            onChanged: (input) => _firstname = input, //input,
             style: const TextStyle(
               color: Colors.white,
               fontFamily: 'OpenSans',
@@ -154,7 +153,7 @@ class _SignupScreenState extends State<SignupScreen> {
             ],
             keyboardType: TextInputType.text,
             validator: lastnameValidator,
-            onChanged: (input) => _email = input, //input,
+            onChanged: (input) => _lastname = input, //input,
             style: const TextStyle(
               color: Colors.white,
               fontFamily: 'OpenSans',
@@ -209,8 +208,8 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
               initialCountryCode: 'TR',
               invalidNumberMessage: " * Invalid Phone Number",
-              onChanged: (phone) {
-                print(phone.completeNumber);
+              onChanged: (input) {
+                _phone = input.toString();
               },
               onCountryChanged: (country) {
                 print('Country changed to: ' + country.name);
