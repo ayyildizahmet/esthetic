@@ -295,16 +295,22 @@ class _SignupScreenState extends State<SignupScreen> {
             userRequestModel = UserSignupRequestModel(email: _email, firstname: _firstname, lastname: _lastname, phone: _phone, password: _password);
             //var result = await api.login(userRequestModel);
             ApiService api = ApiService();
-
-            api.signup(userRequestModel).then((result) {
+            await api.signup(userRequestModel).then((result) {
               // ignore: unnecessary_null_comparison
-              if (result != null && result.isSuccess == true) {
-                EasyLoading.showSuccess(result.message ?? "");
+              if (result != null) {
+                if (result.success) {
+                  EasyLoading.showSuccess('Signup Successfull');
+                } else {
+                  if (result.message != null) {
+                    EasyLoading.showError(result.message ?? "");
+                  } else {
+                    EasyLoading.showError("Username or password is not correct");
+                  }
+                }
               } else {
-                EasyLoading.showError(result.message ?? "");
+                EasyLoading.showError("Login api error.");
               }
             });
-
             _timer?.cancel();
             await EasyLoading.dismiss();
             print('EasyLoading dismiss');
