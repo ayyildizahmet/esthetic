@@ -301,11 +301,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 if (result.success) {
                   EasyLoading.showSuccess('Signup Successfull');
                 } else {
-                  if (result.message != null) {
-                    EasyLoading.showError(result.message ?? "");
-                  } else {
-                    EasyLoading.showError("Username or password is not correct");
-                  }
+                  EasyLoading.showError(result.message ?? "");
                 }
               } else {
                 EasyLoading.showError("Login api error.");

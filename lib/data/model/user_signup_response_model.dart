@@ -16,7 +16,7 @@ class UserSignupResponseModel extends BaseResponseModel {
   factory UserSignupResponseModel.fromJson(Map<String, dynamic> json) => UserSignupResponseModel(
         success: json["success"],
         message: json["message"],
-        isSuccess: json["isSuccess"] ?? "",
+        isSuccess: json["data"]?["isSuccess"] ?? "",
       );
   Map<String, dynamic> toJson() => {
         "success": success,

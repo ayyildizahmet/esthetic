@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:esthetic/data/model/base_response_model.dart';
 
 List<UserLoginResponseModel> userFromJson(String str) => List<UserLoginResponseModel>.from(json.decode(str).map((x) => UserLoginResponseModel.fromJson(x)));

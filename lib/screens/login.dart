@@ -195,11 +195,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   localStorage.setString("token", result.token ?? "");
                   EasyLoading.showSuccess('Login Successfull');
                 } else {
-                  if (result.message != null) {
-                    EasyLoading.showError(result.message ?? "");
-                  } else {
-                    EasyLoading.showError("Username or password is not correct");
-                  }
+                  EasyLoading.showError(result.message ?? "");
                 }
               } else {
                 EasyLoading.showError("Login api error.");
