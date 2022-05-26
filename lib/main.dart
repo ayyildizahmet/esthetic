@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:esthetic/screens/home.dart';
 import 'package:esthetic/screens/login.dart';
 import 'package:esthetic/screens/sign_up.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Esthetic',
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
+      home: HomeScreen(),
       builder: EasyLoading.init(),
     );
   }
