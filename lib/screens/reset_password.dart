@@ -35,7 +35,7 @@ class _ForgotPasswordScreen extends State<ForgotPasswordScreen> {
     //PatternValidator(r'(?=.*?[#?!@$%^&*-])', errorText: ' * passwords must have at least one special character')
   ]);
 
-  Widget _buildEmailTF() {
+  Widget _buildPasswordTF() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -73,6 +73,44 @@ class _ForgotPasswordScreen extends State<ForgotPasswordScreen> {
     );
   }
 
+  Widget _buildPasswordTF2() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          'Email',
+          style: kLabelStyle,
+        ),
+        const SizedBox(height: 10.0),
+        Container(
+          alignment: Alignment.centerLeft,
+          decoration: kBoxDecorationStyle,
+          height: 60.0,
+          child: TextFormField(
+            validator: emailValidator,
+            onChanged: (input) => _email = input, //input,
+            keyboardType: TextInputType.emailAddress,
+            style: const TextStyle(
+              color: Colors.white,
+              fontFamily: 'OpenSans',
+            ),
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              contentPadding: const EdgeInsets.only(top: 14.0),
+              prefixIcon: Icon(
+                Icons.email,
+                color: Colors.white,
+              ),
+              errorStyle: const TextStyle(color: Colors.white, fontFamily: 'OpenSans', decorationColor: Colors.white),
+              hintText: 'Enter your Password',
+              hintStyle: kHintTextStyle,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   Widget _buildForgotPasswordBtn() {
     ForgotPasswordRequestModel forgotPasswordRequestModel;
     return Container(
@@ -97,17 +135,17 @@ class _ForgotPasswordScreen extends State<ForgotPasswordScreen> {
                 // ignore: unnecessary_null_comparison
                 if (result != null) {
                   if (result.success) {
-                    EasyLoading.showSuccess('Send Email Successfull');
+                    EasyLoading.showSuccess('Password Reset Successfull');
                   } else {
                     EasyLoading.showError(result.message ?? "");
                   }
                 } else {
-                  EasyLoading.showError("Forgot Password api error.");
+                  EasyLoading.showError("Password Reset api error.");
                 }
               });
             }
           } catch (e) {
-            EasyLoading.showError("Forgot Password api error = " + e.toString());
+            EasyLoading.showError("Password Reset api error = " + e.toString());
           } finally {
             _timer?.cancel();
             await EasyLoading.dismiss();
@@ -119,7 +157,7 @@ class _ForgotPasswordScreen extends State<ForgotPasswordScreen> {
         ),
         color: Colors.white,
         child: const Text(
-          'FORGOT PASSWORD',
+          'RESET PASSWORD',
           style: TextStyle(
             color: Color(0xFF527DAA),
             letterSpacing: 1.5,
@@ -175,7 +213,7 @@ class _ForgotPasswordScreen extends State<ForgotPasswordScreen> {
                       key: globalFormKey,
                       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
                         Text(
-                          'Forgot Password',
+                          'Reset Password',
                           style: const TextStyle(
                             color: Colors.white,
                             fontFamily: 'OpenSans',
@@ -184,7 +222,8 @@ class _ForgotPasswordScreen extends State<ForgotPasswordScreen> {
                           ),
                         ),
                         const SizedBox(height: 30.0),
-                        _buildEmailTF(),
+                        _buildPasswordTF(),
+                        _buildPasswordTF2(),
                         const SizedBox(
                           height: 30.0,
                         ),
