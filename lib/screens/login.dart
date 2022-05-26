@@ -176,35 +176,37 @@ class _LoginScreenState extends State<LoginScreen> {
       child: RaisedButton(
         elevation: 5.0,
         onPressed: () async {
-          if (validateAndSave()) {
-            _timer?.cancel();
-            await EasyLoading.show(
-              status: '',
-              maskType: EasyLoadingMaskType.black,
-            );
-            //print('EasyLoading show');
+          try {
+            if (validateAndSave()) {
+              _timer?.cancel();
+              await EasyLoading.show(
+                status: '',
+                maskType: EasyLoadingMaskType.black,
+              );
 
-            userRequestModel = UserLoginRequestModel(password: _password, email: _email);
-            //var result = await api.login(userRequestModel);
-            ApiService api = ApiService();
+              userRequestModel = UserLoginRequestModel(password: _password, email: _email);
 
-            await api.login(userRequestModel).then((result) {
-              // ignore: unnecessary_null_comparison
-              if (result != null) {
-                if (result.success) {
-                  localStorage.setString("token", result.token ?? "");
-                  EasyLoading.showSuccess('Login Successfull');
+              ApiService api = ApiService();
+
+              await api.login(userRequestModel).then((result) {
+                // ignore: unnecessary_null_comparison
+                if (result != null) {
+                  if (result.success) {
+                    localStorage.setString("token", result.token ?? "");
+                    EasyLoading.showSuccess('Login Successfull');
+                  } else {
+                    EasyLoading.showError(result.message ?? "");
+                  }
                 } else {
-                  EasyLoading.showError(result.message ?? "");
+                  EasyLoading.showError("Login api error.");
                 }
-              } else {
-                EasyLoading.showError("Login api error.");
-              }
-            });
-
+              });
+            }
+          } catch (e) {
+            EasyLoading.showError("Login api error = " + e.toString());
+          } finally {
             _timer?.cancel();
             await EasyLoading.dismiss();
-            print('EasyLoading dismiss');
           }
         },
         padding: const EdgeInsets.all(15.0),

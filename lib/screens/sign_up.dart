@@ -307,7 +307,7 @@ class _SignupScreenState extends State<SignupScreen> {
               });
             }
           } catch (e) {
-            EasyLoading.showError("Login api error." + e.toString());
+            EasyLoading.showError("Login api error =" + e.toString());
           } finally {
             _timer?.cancel();
             await EasyLoading.dismiss();
