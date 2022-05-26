@@ -10,29 +10,30 @@ class ApiService {
   final String loginURL = "api/auth/login";
   final String signupURL = "api/auth/register";
 
-  Future<UserLoginResponseModel> login(
-      UserLoginRequestModel userLoginRequestModel) async {
+  Future<UserLoginResponseModel> login(UserLoginRequestModel userLoginRequestModel) async {
     Response res = await post(Uri.parse(baseURL + loginURL),
-            headers: {"Content-Type": "application/json"},
-            body: jsonEncode(userLoginRequestModel.toJson()))
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: jsonEncode(userLoginRequestModel))
         .timeout(const Duration(seconds: 10));
     if (res.statusCode == 200 || res.statusCode == 400) {
-      UserLoginResponseModel posts =
-          UserLoginResponseModel.fromJson(jsonDecode(res.body));
+      UserLoginResponseModel posts = UserLoginResponseModel.fromJson(jsonDecode(res.body));
       return posts;
     } else {
       throw "Unable to retrieve posts.";
     }
   }
 
-  Future<UserSignupResponseModel> signup(
-      UserSignupRequestModel userSignupRequestModel) async {
+  Future<UserSignupResponseModel> signup(UserSignupRequestModel userSignupRequestModel) async {
     Response res = await post(Uri.parse(baseURL + signupURL),
-        headers: {"Content-Type": "application/json"},
-        body: jsonEncode(userSignupRequestModel));
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: jsonEncode(userSignupRequestModel))
+        .timeout(const Duration(seconds: 10));
     if (res.statusCode == 200 || res.statusCode == 400) {
-      UserSignupResponseModel posts =
-          UserSignupResponseModel.fromJson(jsonDecode(res.body));
+      UserSignupResponseModel posts = UserSignupResponseModel.fromJson(jsonDecode(res.body));
       return posts;
     } else {
       throw "Unable to retrieve posts.";
