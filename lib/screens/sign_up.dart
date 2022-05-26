@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:esthetic/data/api.dart';
@@ -8,7 +9,6 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:esthetic/data/model/user_signup_request_model.dart';
 import 'package:esthetic/data/model/user_signup_response_model.dart';
-import 'package:intl/intl.dart';
 
 class SignupScreen extends StatefulWidget {
   @override
@@ -21,8 +21,8 @@ class _SignupScreenState extends State<SignupScreen> {
   String _email = "";
   String _firstname = "";
   String _lastname = "";
-  String _phone = "";
   String _countryCode = "";
+  String _phone = "";
   String _password = "";
 
   bool? _rememberMe = false;
@@ -41,8 +41,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
   final emailValidator = MultiValidator([
     RequiredValidator(errorText: ' * email is required'),
-    MinLengthValidator(6,
-        errorText: ' * password must be at least 6 digits long'),
+    MinLengthValidator(6, errorText: ' * password must be at least 6 digits long'),
   ]);
 
   Widget _buildEmailTF() {
@@ -73,10 +72,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 Icons.email,
                 color: Colors.white,
               ),
-              errorStyle: const TextStyle(
-                  color: Colors.white,
-                  fontFamily: 'OpenSans',
-                  decorationColor: Colors.white),
+              errorStyle: const TextStyle(color: Colors.white, fontFamily: 'OpenSans', decorationColor: Colors.white),
               hintText: 'Enter your Email',
               hintStyle: kHintTextStyle,
             ),
@@ -88,8 +84,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
   final firstnameValidator = MultiValidator([
     RequiredValidator(errorText: ' * firstname is required'),
-    MinLengthValidator(2,
-        errorText: ' * password must be at least 2 digits long'),
+    MinLengthValidator(2, errorText: ' * password must be at least 2 digits long'),
     //PatternValidator(r'(?=.*?[#?!@$%^&*-])', errorText: ' * passwords must have at least one special character')
   ]);
 
@@ -124,10 +119,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 Icons.assignment_ind_sharp,
                 color: Colors.white,
               ),
-              errorStyle: const TextStyle(
-                  color: Colors.white,
-                  fontFamily: 'OpenSans',
-                  decorationColor: Colors.white),
+              errorStyle: const TextStyle(color: Colors.white, fontFamily: 'OpenSans', decorationColor: Colors.white),
               hintText: 'Enter your Firstname',
               hintStyle: kHintTextStyle,
             ),
@@ -139,8 +131,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
   final lastnameValidator = MultiValidator([
     RequiredValidator(errorText: ' * lastname is required'),
-    MinLengthValidator(2,
-        errorText: ' * password must be at least 2 digits long'),
+    MinLengthValidator(2, errorText: ' * password must be at least 2 digits long'),
     //PatternValidator(r'(?=.*?[#?!@$%^&*-])', errorText: ' * passwords must have at least one special character')
   ]);
 
@@ -175,10 +166,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 Icons.assignment_ind_sharp,
                 color: Colors.white,
               ),
-              errorStyle: const TextStyle(
-                  color: Colors.white,
-                  fontFamily: 'OpenSans',
-                  decorationColor: Colors.white),
+              errorStyle: const TextStyle(color: Colors.white, fontFamily: 'OpenSans', decorationColor: Colors.white),
               hintText: 'Enter your Lastname',
               hintStyle: kHintTextStyle,
             ),
@@ -214,10 +202,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 border: InputBorder.none,
                 contentPadding: const EdgeInsets.only(top: 28.0),
                 counterStyle: kLabelStyle,
-                errorStyle: const TextStyle(
-                    color: Colors.white,
-                    fontFamily: 'OpenSans',
-                    decorationColor: Colors.white),
+                errorStyle: const TextStyle(color: Colors.white, fontFamily: 'OpenSans', decorationColor: Colors.white),
                 hintText: 'Enter your phone',
                 //labelText: 'Phone Number',
                 hintStyle: kHintTextStyle,
@@ -238,9 +223,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
   final passwordValidator = MultiValidator([
     RequiredValidator(errorText: ' * password is required'),
-    MinLengthValidator(6,
-        errorText: ' * password must be at least 6 digits long'),
-    //PatternValidator(r'(?=.*?[#?!@$%^&*-])', errorText: ' * passwords must have at least one special character')
+    MinLengthValidator(6, errorText: ' * password must be at least 6 digits long'),
   ]);
 
   Widget _buildPasswordTF() {
@@ -271,10 +254,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 Icons.lock,
                 color: Colors.white,
               ),
-              errorStyle: const TextStyle(
-                  color: Colors.white,
-                  fontFamily: 'OpenSans',
-                  decorationColor: Colors.white),
+              errorStyle: const TextStyle(color: Colors.white, fontFamily: 'OpenSans', decorationColor: Colors.white),
               hintText: 'Enter your Password',
               hintStyle: kHintTextStyle,
             ),
@@ -297,7 +277,6 @@ class _SignupScreenState extends State<SignupScreen> {
 // }
 
   Widget _buildSignUpBtn() {
-    //ApiService api = ApiService();
     UserSignupRequestModel userRequestModel;
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 25.0),
@@ -305,38 +284,33 @@ class _SignupScreenState extends State<SignupScreen> {
       child: RaisedButton(
         elevation: 5.0,
         onPressed: () async {
-          if (validateAndSave()) {
-            _timer?.cancel();
-            await EasyLoading.show(
-              status: '',
-              maskType: EasyLoadingMaskType.black,
-            );
-            //print('EasyLoading show');
-
-            userRequestModel = UserSignupRequestModel(
-                email: _email,
-                firstname: _firstname,
-                lastname: _lastname,
-                phone: _phone,
-                countryCode: _countryCode,
-                password: _password);
-            //var result = await api.login(userRequestModel);
-            ApiService api = ApiService();
-            await api.signup(userRequestModel).then((result) {
-              // ignore: unnecessary_null_comparison
-              if (result != null) {
-                if (result.success) {
-                  EasyLoading.showSuccess('Signup Successfull');
+          try {
+            if (validateAndSave()) {
+              _timer?.cancel();
+              await EasyLoading.show(
+                status: '',
+                maskType: EasyLoadingMaskType.black,
+              );
+              userRequestModel = UserSignupRequestModel(email: _email, firstname: _firstname, lastname: _lastname, phone: _phone, countryCode: _countryCode, password: _password);
+              ApiService api = ApiService();
+              await api.signup(userRequestModel).then((result) {
+                // ignore: unnecessary_null_comparison
+                if (result != null) {
+                  if (result.success) {
+                    EasyLoading.showSuccess('Signup Successfull');
+                  } else {
+                    EasyLoading.showError(result.message ?? "");
+                  }
                 } else {
-                  EasyLoading.showError(result.message ?? "");
+                  EasyLoading.showError("Login api error.");
                 }
-              } else {
-                EasyLoading.showError("Login api error.");
-              }
-            });
+              });
+            }
+          } catch (e) {
+            //print(e);
+          } finally {
             _timer?.cancel();
             await EasyLoading.dismiss();
-            print('EasyLoading dismiss');
           }
         },
         padding: const EdgeInsets.all(15.0),
@@ -380,7 +354,12 @@ class _SignupScreenState extends State<SignupScreen> {
                       const Color(0xFF478DE0),
                       const Color(0xFF398AE5),
                     ],
-                    stops: [0.1, 0.4, 0.7, 0.9],
+                    stops: [
+                      0.1,
+                      0.4,
+                      0.7,
+                      0.9
+                    ],
                   ),
                 ),
               ),
@@ -394,41 +373,39 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                   child: Form(
                       key: globalFormKey,
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text(
-                              'Sign Up',
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontFamily: 'OpenSans',
-                                fontSize: 30.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const SizedBox(height: 30.0),
-                            _buildEmailTF(),
-                            const SizedBox(
-                              height: 30.0,
-                            ),
-                            _buildFirstnameTF(),
-                            const SizedBox(
-                              height: 30.0,
-                            ),
-                            _buildLastnameTF(),
-                            const SizedBox(
-                              height: 30.0,
-                            ),
-                            _buildPhoneTF(),
-                            const SizedBox(
-                              height: 30.0,
-                            ),
-                            _buildPasswordTF(),
-                            const SizedBox(
-                              height: 30.0,
-                            ),
-                            _buildSignUpBtn(),
-                          ])),
+                      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+                        Text(
+                          'Sign Up',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'OpenSans',
+                            fontSize: 30.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 30.0),
+                        _buildEmailTF(),
+                        const SizedBox(
+                          height: 30.0,
+                        ),
+                        _buildFirstnameTF(),
+                        const SizedBox(
+                          height: 30.0,
+                        ),
+                        _buildLastnameTF(),
+                        const SizedBox(
+                          height: 30.0,
+                        ),
+                        _buildPhoneTF(),
+                        const SizedBox(
+                          height: 30.0,
+                        ),
+                        _buildPasswordTF(),
+                        const SizedBox(
+                          height: 30.0,
+                        ),
+                        _buildSignUpBtn(),
+                      ])),
                 ),
               )
             ],
