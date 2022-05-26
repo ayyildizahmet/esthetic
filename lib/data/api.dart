@@ -6,7 +6,6 @@ import 'model/user_login_request_model.dart';
 import 'model/user_login_response_model.dart';
 
 class ApiService {
-  final int timeoutSecond = 10;
   final String baseURL = "http://ayyildiz.xyz:8090/";
   final String loginURL = "api/auth/login";
   final String signupURL = "api/auth/register";
@@ -17,7 +16,7 @@ class ApiService {
               "Content-Type": "application/json"
             },
             body: jsonEncode(userLoginRequestModel))
-        .timeout(const Duration(seconds: timeoutSecond));
+        .timeout(const Duration(seconds: 10));
     if (res.statusCode == 200 || res.statusCode == 400) {
       UserLoginResponseModel posts = UserLoginResponseModel.fromJson(jsonDecode(res.body));
       return posts;
@@ -32,7 +31,7 @@ class ApiService {
               "Content-Type": "application/json"
             },
             body: jsonEncode(userSignupRequestModel))
-        .timeout(const Duration(seconds: timeoutSecond));
+        .timeout(const Duration(seconds: 10));
     if (res.statusCode == 200 || res.statusCode == 400) {
       UserSignupResponseModel posts = UserSignupResponseModel.fromJson(jsonDecode(res.body));
       return posts;
