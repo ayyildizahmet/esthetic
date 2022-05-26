@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:esthetic/screens/home.dart';
 import 'package:esthetic/screens/sign_up.dart';
 import 'package:esthetic/screens/forgot_password.dart';
 import 'package:flutter/material.dart';
@@ -194,6 +195,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   if (result.success) {
                     localStorage.setString("token", result.token ?? "");
                     EasyLoading.showSuccess('Login Successfull');
+                    Navigator.push(context, MaterialPageRoute(builder: (signUpContext) => const HomeScreen()));
                   } else {
                     EasyLoading.showError(result.message ?? "");
                   }
