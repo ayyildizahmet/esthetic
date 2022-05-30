@@ -1,3 +1,4 @@
+import 'package:esthetic/widgets/bubble_stories.dart';
 import 'package:flutter/material.dart';
 
 class ActivityScreen extends StatefulWidget {
@@ -6,8 +7,31 @@ class ActivityScreen extends StatefulWidget {
 }
 
 class _ActivityScreen extends State<ActivityScreen> {
+  final List companies = [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e"
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Text("Home")));
+    return Scaffold(
+      appBar: AppBar(),
+      body: Column(
+        children: [
+          Container(
+              height: 130,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: companies.length,
+                itemBuilder: (context, index) {
+                  return BubbleStories();
+                },
+              ))
+        ],
+      ),
+    );
   }
 }
