@@ -23,13 +23,13 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: const Center(
-        child: const Text('Body Here'),
+        child: Text('Body Here'),
       ),
       bottomNavigationBar: BottomNavigationBar(type: BottomNavigationBarType.fixed, currentIndex: _selectedIndex, onTap: navigateBottomNavBar, items: const [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: "Shop"),
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: "Forum"),
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: "Profile"),
+        BottomNavigationBarItem(icon: Icon(Icons.shop), label: "Shop"),
+        BottomNavigationBarItem(icon: Icon(Icons.forum), label: "Forum"),
+        BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
       ]),
     );
   }
