@@ -1,6 +1,7 @@
-import 'package:esthetic/data/model/home_bottom_navigation_menu_model.dart';
-import 'package:flutter/cupertino.dart';
-
+import 'package:esthetic/screens/activity.dart';
+import 'package:esthetic/screens/forum.dart';
+import 'package:esthetic/screens/shop.dart';
+import 'package:esthetic/screens/profile.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -18,6 +19,13 @@ class _HomeScreenState extends State<HomeScreen> {
       _selectedIndex = index;
     });
   }
+
+  final List<Widget> children = [
+    ActivityScreen(),
+    ShopScreen(),
+    ForumScreen(),
+    ProfileScreen(),
+  ];
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:esthetic/screens/home.dart';
 import 'package:esthetic/screens/login.dart';
-import 'package:esthetic/screens/sign_up.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 void main() {
