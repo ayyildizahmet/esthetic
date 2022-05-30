@@ -12,7 +12,13 @@ class _ActivityScreen extends State<ActivityScreen> {
     "b",
     "c",
     "d",
-    "e"
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k"
   ];
 
   @override
