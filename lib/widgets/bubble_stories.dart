@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class BubbleStories extends StatefulWidget {
+  final String name;
+  BubbleStories({Key? key, required this.name}) : super(key: key)
   @override
   _BubbleStories createState() => _BubbleStories();
 }
@@ -20,7 +22,7 @@ class _BubbleStories extends State<BubbleStories> {
           const SizedBox(
             height: 10,
           ),
-          const Text('name')
+          Text(widget.name)
         ],
       ),
     );

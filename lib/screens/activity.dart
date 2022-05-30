@@ -33,7 +33,7 @@ class _ActivityScreen extends State<ActivityScreen> {
                 scrollDirection: Axis.horizontal,
                 itemCount: companies.length,
                 itemBuilder: (context, index) {
-                  return BubbleStories();
+                  return BubbleStories(name: companies[index]);
                 },
               ))
         ],
