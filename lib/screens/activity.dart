@@ -36,8 +36,8 @@ class _ActivityScreen extends State<ActivityScreen> {
 
   @override
   initState() async {
-    super.initState();
     _getStories();
+    super.initState();
   }
 
   @override
