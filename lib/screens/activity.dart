@@ -54,7 +54,8 @@ class _ActivityScreen extends State<ActivityScreen> {
                 itemBuilder: (context, index) {
                   return BubbleStories(name: stories[index].name ?? "a");
                 },
-              ))
+              )),
+          Text("List Count:" + stories.length.toString())
         ],
       ),
     );
