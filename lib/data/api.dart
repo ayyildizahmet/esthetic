@@ -6,12 +6,15 @@ import 'package:esthetic/data/model/user_signup_request_model.dart';
 import 'package:esthetic/data/model/user_signup_response_model.dart';
 import 'package:esthetic/data/model/user_forgot_password_request_model.dart';
 import 'package:esthetic/data/model/user_forgot_password_response_model.dart';
+//import 'package:esthetic/data/model/story_request_model.dart';
+import 'package:esthetic/data/model/story_response_model.dart';
 
 class ApiService {
   final String baseURL = "http://ayyildiz.xyz:8090/";
   final String loginURL = "api/auth/login";
   final String signupURL = "api/auth/register";
   final String forgotPasswordURL = "api/auth/forgotpassword";
+  final String getCompanies = "api/company/getlist";
 
   Future<UserLoginResponseModel> login(UserLoginRequestModel request) async {
     Response res = await post(Uri.parse(baseURL + loginURL),
@@ -19,7 +22,7 @@ class ApiService {
               "Content-Type": "application/json"
             },
             body: jsonEncode(request))
-        .timeout(const Duration(seconds: 10));
+        .timeout(const Duration(seconds: 15));
     if (res.statusCode == 200 || res.statusCode == 400) {
       UserLoginResponseModel posts = UserLoginResponseModel.fromJson(jsonDecode(res.body));
       return posts;
@@ -55,6 +58,25 @@ class ApiService {
       return posts;
     } else {
       throw "Unable to retrieve posts.";
+    }
+  }
+
+  Future<List<StoryResponseModel>> getStories() async {
+    Response res = await get(
+      Uri.parse(baseURL + getCompanies),
+      headers: {
+        "Content-Type": "application/json"
+      },
+    ).timeout(const Duration(seconds: 10));
+    if (res.statusCode == 200 || res.statusCode == 400) {
+      List<StoryResponseModel> stories = <StoryResponseModel>[];
+      Iterable list = json.decode(res.body);
+
+      stories = list.map((model) => StoryResponseModel.fromJson(model)).toList();
+
+      return stories;
+    } else {
+      throw "Unable to retrieve get.";
     }
   }
 }

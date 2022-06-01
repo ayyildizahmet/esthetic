@@ -1,5 +1,8 @@
 import 'package:esthetic/widgets/bubble_stories.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:esthetic/data/api.dart';
+import 'package:esthetic/data/model/story_response_model.dart';
 
 class ActivityScreen extends StatefulWidget {
   @override
@@ -7,6 +10,7 @@ class ActivityScreen extends StatefulWidget {
 }
 
 class _ActivityScreen extends State<ActivityScreen> {
+  List<StoryResponseModel> stories = <StoryResponseModel>[];
   final List companies = [
     "a",
     "b",
@@ -21,6 +25,21 @@ class _ActivityScreen extends State<ActivityScreen> {
     "k"
   ];
 
+  _getStories() {
+    ApiService api = ApiService();
+    api.getStories().then((response) {
+      setState(() {
+        stories = response;
+      });
+    });
+  }
+
+  @override
+  initState() async {
+    super.initState();
+    _getStories();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,9 +50,9 @@ class _ActivityScreen extends State<ActivityScreen> {
               height: 130,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: companies.length,
+                itemCount: stories.length,
                 itemBuilder: (context, index) {
-                  return BubbleStories(name: companies[index]);
+                  return BubbleStories(name: stories[index].name ?? "a");
                 },
               ))
         ],
