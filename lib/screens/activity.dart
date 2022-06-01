@@ -52,11 +52,13 @@ class _ActivityScreen extends State<ActivityScreen> {
                 scrollDirection: Axis.horizontal,
                 itemCount: stories.length,
                 itemBuilder: (context, index) {
-                  return BubbleStories(name: stories[index].name ?? "a");
+                  return BubbleStories(
+                      name: stories[index].name ?? "",
+                      logoUrl: stories[index].logoUrl ?? "");
                 },
               )),
           Text("List Count:" + stories.length.toString()),
-          Text("response:" + stories.toString()),
+          // Text("response:" + stories.toString()),
         ],
       ),
     );
