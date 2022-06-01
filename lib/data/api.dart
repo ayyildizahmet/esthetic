@@ -70,9 +70,9 @@ class ApiService {
     ).timeout(const Duration(seconds: 10));
     if (res.statusCode == 200 || res.statusCode == 400) {
       List<StoryResponseModel> stories = <StoryResponseModel>[];
-      Iterable list = json.decode(res.body);
-
-      stories = list.map((model) => StoryResponseModel.fromJson(model)).toList();
+      //Iterable list = json.decode(res.body);
+      stories = json.decode(res.body)['data'].map((data) => StoryResponseModel.fromJson(data)).toList();
+      // stories = list.map((model) => StoryResponseModel.fromJson(model)).toList();
 
       return stories;
     } else {
