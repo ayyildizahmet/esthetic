@@ -37,13 +37,11 @@ class _ActivityScreen extends State<ActivityScreen> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text('EsteApp', style: TextStyle(color: Colors.black)),
+            const Text('Estegram', style: TextStyle(color: Colors.black)),
             Row(
               children: const [
                 Icon(Icons.add, color: Colors.black),
-                Padding(
-                    padding: EdgeInsets.all(24),
-                    child: Icon(Icons.favorite, color: Colors.black)),
+                Padding(padding: EdgeInsets.all(24), child: Icon(Icons.favorite, color: Colors.black)),
                 Icon(Icons.share, color: Colors.black)
               ],
             )
@@ -58,9 +56,7 @@ class _ActivityScreen extends State<ActivityScreen> {
                 scrollDirection: Axis.horizontal,
                 itemCount: stories.length,
                 itemBuilder: (context, index) {
-                  return BubbleStories(
-                      name: stories[index].name ?? "",
-                      logoUrl: stories[index].logoUrl ?? "");
+                  return BubbleStories(name: stories[index].name ?? "", logoUrl: stories[index].logoUrl ?? "");
                 },
               )),
           Text("List Count:" + stories.length.toString()),
