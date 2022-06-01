@@ -10,9 +10,10 @@ import 'package:esthetic/utilities/local_storage.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:esthetic/data/model/user_login_request_model.dart';
-//import 'package:esthetic/data/model/user_login_response_model.dart';
 
 class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
+
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }

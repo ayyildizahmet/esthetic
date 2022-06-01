@@ -6,9 +6,10 @@ import 'package:esthetic/utilities/constants.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:esthetic/data/model/user_forgot_password_request_model.dart';
-import 'package:esthetic/data/model/user_forgot_password_response_model.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
+  const ForgotPasswordScreen({Key? key}) : super(key: key);
+
   @override
   _ForgotPasswordScreen createState() => _ForgotPasswordScreen();
 }

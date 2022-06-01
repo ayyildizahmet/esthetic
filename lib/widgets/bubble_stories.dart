@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 class BubbleStories extends StatefulWidget {
   final String name;
   final String logoUrl;
-  const BubbleStories({Key? key, required this.name, required this.logoUrl})
-      : super(key: key);
+  const BubbleStories({Key? key, required this.name, required this.logoUrl}) : super(key: key);
   @override
   _BubbleStories createState() => _BubbleStories();
 }
@@ -16,17 +15,6 @@ class _BubbleStories extends State<BubbleStories> {
       padding: const EdgeInsets.all(8.0),
       child: Column(
         children: [
-          // Container(
-          //   width: 60,
-          //   height: 60,
-          //   decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.grey[400]),
-          // ),
-          // CircleAvatar(
-          //   radius: 40.0,
-          //   backgroundImage: NetworkImage(widget.logoUrl),
-          //   backgroundColor: Colors.transparent,
-          // ),
-
           CircleAvatar(
             radius: 40,
             backgroundColor: Colors.black26,
