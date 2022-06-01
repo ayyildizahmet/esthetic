@@ -32,17 +32,35 @@ class _ActivityScreen extends State<ActivityScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.grey[100],
+        elevation: 0,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text('EsteApp', style: TextStyle(color: Colors.black)),
+            Row(
+              children: const [
+                Icon(Icons.add, color: Colors.black),
+                Padding(
+                    padding: EdgeInsets.all(24),
+                    child: Icon(Icons.favorite, color: Colors.black)),
+                Icon(Icons.share, color: Colors.black)
+              ],
+            )
+          ],
+        ),
       ),
       body: Column(
         children: [
-          Container(
+          SizedBox(
               height: 130,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: stories.length,
                 itemBuilder: (context, index) {
-                  return BubbleStories(name: stories[index].name ?? "", logoUrl: stories[index].logoUrl ?? "");
+                  return BubbleStories(
+                      name: stories[index].name ?? "",
+                      logoUrl: stories[index].logoUrl ?? "");
                 },
               )),
           Text("List Count:" + stories.length.toString()),
