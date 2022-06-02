@@ -61,7 +61,7 @@ class ApiService {
     }
   }
 
-  Future<List<StoryBubbleResponseModel>> getStories() async {
+  Future<List<StoryBubbleResponseModel>> getStoryBubbles() async {
     Response res = await get(
       Uri.parse(baseURL + getCompanies),
       headers: {

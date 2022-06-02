@@ -11,11 +11,11 @@ class ActivityScreen extends StatefulWidget {
 }
 
 class _ActivityScreen extends State<ActivityScreen> {
+  ApiService api = ApiService();
   List<StoryBubbleResponseModel> stories = <StoryBubbleResponseModel>[];
 
-  _getStories() {
-    ApiService api = ApiService();
-    api.getStories().then((response) {
+  _getStoryBubbles() {
+    api.getStoryBubbles().then((response) {
       setState(() {
         stories = response;
       });
@@ -24,7 +24,7 @@ class _ActivityScreen extends State<ActivityScreen> {
 
   @override
   initState() {
-    _getStories();
+    _getStoryBubbles();
     super.initState();
   }
 
