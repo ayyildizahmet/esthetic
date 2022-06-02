@@ -1,7 +1,7 @@
 import 'package:esthetic/widgets/bubble_stories.dart';
 import 'package:flutter/material.dart';
 import 'package:esthetic/data/api.dart';
-import 'package:esthetic/data/model/story_response_model.dart';
+import 'package:esthetic/data/model/story_bubble_response_model.dart';
 
 class ActivityScreen extends StatefulWidget {
   const ActivityScreen({Key? key}) : super(key: key);
@@ -11,7 +11,7 @@ class ActivityScreen extends StatefulWidget {
 }
 
 class _ActivityScreen extends State<ActivityScreen> {
-  List<StoryResponseModel> stories = <StoryResponseModel>[];
+  List<StoryBubbleResponseModel> stories = <StoryBubbleResponseModel>[];
 
   _getStories() {
     ApiService api = ApiService();
