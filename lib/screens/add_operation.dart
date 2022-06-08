@@ -61,7 +61,7 @@ class _AddOperationScreen extends State<AddOperationScreen> {
                     color: Colors.white,
                   ),
                   errorStyle: const TextStyle(color: Colors.white, fontFamily: 'OpenSans', decorationColor: Colors.white),
-                  hintText: 'Enter your Email',
+                  hintText: 'Select Clinic',
                   hintStyle: kHintTextStyle,
                 ),
               ),
