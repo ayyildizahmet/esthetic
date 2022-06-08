@@ -38,10 +38,25 @@ class _AddOperationScreen extends State<AddOperationScreen> {
               alignment: Alignment.centerLeft,
               decoration: kBoxDecorationStyle,
               height: 60.0,
-              child: TextFormField(
+              child: DropdownButtonFormField(
                 //validator: emailValidator,
                 //onChanged: (input) => _email = input, //input,
-                keyboardType: TextInputType.emailAddress,
+                //keyboardType: TextInputType.emailAddress,
+                items: [
+                  DropdownMenuItem(
+                    child: Text("First Item"),
+                    value: 1,
+                  ),
+                  DropdownMenuItem(
+                    child: Text("Second Item"),
+                    value: 2,
+                  ),
+                  DropdownMenuItem(child: Text("Third Item"), value: 3),
+                  DropdownMenuItem(child: Text("Fourth Item"), value: 4)
+                ],
+                onChanged: (value) {
+                  // do your stuffs
+                },
                 style: const TextStyle(
                   color: Colors.white,
                   fontFamily: 'OpenSans',
@@ -50,7 +65,7 @@ class _AddOperationScreen extends State<AddOperationScreen> {
                   border: InputBorder.none,
                   contentPadding: const EdgeInsets.only(top: 14.0),
                   prefixIcon: Icon(
-                    Icons.build,
+                    Icons.home,
                     color: Colors.white,
                   ),
                   errorStyle: const TextStyle(color: Colors.white, fontFamily: 'OpenSans', decorationColor: Colors.white),
