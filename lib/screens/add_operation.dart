@@ -1,3 +1,5 @@
+import 'package:esthetic/data/api.dart';
+import 'package:esthetic/data/model/clinic_get_list_response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:esthetic/utilities/constants.dart';
 import 'package:esthetic/utilities/local_storage.dart';
@@ -13,6 +15,17 @@ class AddOperationScreen extends StatefulWidget {
 }
 
 class _AddOperationScreen extends State<AddOperationScreen> {
+  ApiService api = ApiService();
+  List<ClinicResponseModel> clinics = <ClinicResponseModel>[];
+
+  _getClinics() => api.getClinics().then((response) {
+        setState(() {
+          clinics = response;
+        });
+      });
+
+  void BindClinicsData() {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,18 +55,12 @@ class _AddOperationScreen extends State<AddOperationScreen> {
                 //validator: emailValidator,
                 //onChanged: (input) => _email = input, //input,
                 //keyboardType: TextInputType.emailAddress,
-                items: [
-                  DropdownMenuItem(
-                    child: Text("First Item"),
-                    value: 1,
-                  ),
-                  DropdownMenuItem(
-                    child: Text("Second Item"),
-                    value: 2,
-                  ),
-                  DropdownMenuItem(child: Text("Third Item"), value: 3),
-                  DropdownMenuItem(child: Text("Fourth Item"), value: 4)
-                ],
+                items: clinics
+                    .map<DropdownMenuItem<String>>((MapEntry<String, String> e) => DropdownMenuItem<String>(
+                          value: e.key,
+                          child: Text(e.value),
+                        ))
+                    .toList(),
                 onChanged: (value) {
                   print(value.toString());
                 },

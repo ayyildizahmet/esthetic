@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:esthetic/data/model/clinic_get_list_response_model.dart';
 import 'package:http/http.dart';
 import 'package:esthetic/data/model/user_login_request_model.dart';
 import 'package:esthetic/data/model/user_login_response_model.dart';
@@ -67,13 +68,31 @@ class ApiService {
       headers: {
         "Content-Type": "application/json"
       },
-    ).timeout(const Duration(seconds: 10));
+    ).timeout(const Duration(seconds: 15));
     if (res.statusCode == 200 || res.statusCode == 400) {
       List<StoryBubbleResponseModel> stories = <StoryBubbleResponseModel>[];
       Iterable list = json.decode(res.body)['data'];
       stories = list.map((model) => StoryBubbleResponseModel.fromJson(model)).toList();
 
       return stories;
+    } else {
+      throw "Unable to retrieve get.";
+    }
+  }
+
+  Future<List<ClinicResponseModel>> getClinics() async {
+    Response res = await get(
+      Uri.parse(baseURL + getCompanies),
+      headers: {
+        "Content-Type": "application/json"
+      },
+    ).timeout(const Duration(seconds: 15));
+    if (res.statusCode == 200 || res.statusCode == 400) {
+      List<ClinicResponseModel> clinics = <ClinicResponseModel>[];
+      Iterable list = json.decode(res.body)['data'];
+      clinics = list.map((model) => ClinicResponseModel.fromJson(model)).toList();
+
+      return clinics;
     } else {
       throw "Unable to retrieve get.";
     }
