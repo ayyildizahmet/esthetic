@@ -1,5 +1,5 @@
+import 'package:esthetic/screens/add_operation.dart';
 import 'package:flutter/material.dart';
-import 'package:esthetic/screens/home.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 void main() {
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Esthetic',
       debugShowCheckedModeBanner: false,
-      home: const HomeScreen(),
+      home: const AddOperationScreen(),
       builder: EasyLoading.init(),
     );
   }

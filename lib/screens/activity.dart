@@ -14,13 +14,11 @@ class _ActivityScreen extends State<ActivityScreen> {
   ApiService api = ApiService();
   List<StoryBubbleResponseModel> stories = <StoryBubbleResponseModel>[];
 
-  _getStoryBubbles() {
-    api.getStoryBubbles().then((response) {
-      setState(() {
-        stories = response;
+  _getStoryBubbles() => api.getStoryBubbles().then((response) {
+        setState(() {
+          stories = response;
+        });
       });
-    });
-  }
 
   @override
   initState() {
