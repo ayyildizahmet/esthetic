@@ -36,7 +36,7 @@ class _AddOperationScreen extends State<AddOperationScreen> {
             const SizedBox(height: 10.0),
             Container(
               alignment: Alignment.centerLeft,
-              decoration: kBoxDecorationStyle,
+              //decoration: kBoxDecorationStyle,
               height: 60.0,
               child: TextFormField(
                 //validator: emailValidator,
@@ -50,7 +50,7 @@ class _AddOperationScreen extends State<AddOperationScreen> {
                   border: InputBorder.none,
                   contentPadding: const EdgeInsets.only(top: 14.0),
                   prefixIcon: Icon(
-                    Icons.email,
+                    Icons.build,
                     color: Colors.white,
                   ),
                   errorStyle: const TextStyle(color: Colors.white, fontFamily: 'OpenSans', decorationColor: Colors.white),
