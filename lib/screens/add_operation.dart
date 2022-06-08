@@ -55,7 +55,7 @@ class _AddOperationScreen extends State<AddOperationScreen> {
                   DropdownMenuItem(child: Text("Fourth Item"), value: 4)
                 ],
                 onChanged: (value) {
-                  // do your stuffs
+                  print(value.toString());
                 },
                 style: const TextStyle(
                   color: Colors.white,
