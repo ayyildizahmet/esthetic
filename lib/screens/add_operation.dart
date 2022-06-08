@@ -36,7 +36,7 @@ class _AddOperationScreen extends State<AddOperationScreen> {
             const SizedBox(height: 10.0),
             Container(
               alignment: Alignment.centerLeft,
-              //decoration: kBoxDecorationStyle,
+              decoration: kBoxDecorationStyle,
               height: 60.0,
               child: TextFormField(
                 //validator: emailValidator,
