@@ -17,22 +17,22 @@ class _AddOperationScreen extends State<AddOperationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-        backgroundColor: Colors.grey[100],
-        elevation: 0,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text('Add Operation Record', style: TextStyle(color: Colors.black)),
-            Row(
-              children: const [
-                Icon(Icons.add, color: Colors.black),
-                Padding(padding: EdgeInsets.all(24), child: Icon(Icons.favorite, color: Colors.black)),
-                Icon(Icons.share, color: Colors.black)
-              ],
-            )
-          ],
+          backgroundColor: Colors.grey[100],
+          elevation: 0,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text('Add Operation Record', style: TextStyle(color: Colors.black)),
+              Row(
+                children: const [
+                  Icon(Icons.add, color: Colors.black),
+                  Padding(padding: EdgeInsets.all(24), child: Icon(Icons.favorite, color: Colors.black)),
+                  Icon(Icons.share, color: Colors.black)
+                ],
+              )
+            ],
+          ),
         ),
-      ),,
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
