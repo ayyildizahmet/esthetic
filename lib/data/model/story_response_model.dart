@@ -9,9 +9,7 @@ class StoryResponseModel {
 
   StoryResponseModel({required this.media, required this.url, required this.duration});
 
-  factory StoryResponseModel.fromJson(Map<String, dynamic> json) => StoryResponseModel(media: json["media"], url: json["url"], duration: [
-        "duration"
-      ]);
+  //factory StoryResponseModel.fromJson(Map<String, dynamic> json) => StoryResponseModel(media: json["media"], url: json["url"], duration: ["duration"]);
 
   // Map<String, dynamic> toJson() => {"name": name, "logoUrl": logoUrl};
 }
