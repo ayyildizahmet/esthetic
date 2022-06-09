@@ -56,10 +56,12 @@ class _AddOperationScreen extends State<AddOperationScreen> {
                 //onChanged: (input) => _email = input, //input,
                 //keyboardType: TextInputType.emailAddress,
                 items: clinics
-                    .map<DropdownMenuItem<String>>((MapEntry<String, String> e) => DropdownMenuItem<String>(
-                          value: e.key,
-                          child: Text(e.value),
-                        ))
+                    .map(
+                      (e) => DropdownMenuItem(
+                        child: Text(e.name ?? ""),
+                        value: e.id,
+                      ),
+                    )
                     .toList(),
                 onChanged: (value) {
                   print(value.toString());
