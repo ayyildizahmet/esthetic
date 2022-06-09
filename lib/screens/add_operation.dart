@@ -71,7 +71,7 @@ class _AddOperationScreen extends State<AddOperationScreen> {
                     .map(
                       (e) => DropdownMenuItem(
                         child: Text(e.name ?? ""),
-                        value: e.id,
+                        value: e.name,
                       ),
                     )
                     .toList(),
