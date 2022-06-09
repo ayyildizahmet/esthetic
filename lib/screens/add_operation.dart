@@ -61,7 +61,7 @@ class _AddOperationScreen extends State<AddOperationScreen> {
                       (e) => DropdownMenuItem(
                         child: Text(e.name ?? "",
                             style: const TextStyle(
-                              color: Colors.white,
+                              color: Colors.black,
                               fontFamily: 'OpenSans',
                             )),
                         value: e.id,
