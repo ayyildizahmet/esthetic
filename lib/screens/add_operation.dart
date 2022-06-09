@@ -123,7 +123,7 @@ class _AddOperationScreen extends State<AddOperationScreen> {
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   contentPadding: const EdgeInsets.only(top: 14.0),
-                  prefixIcon: const Icon(MdiIcons.clipboardAccount),
+                  prefixIcon: const Icon(MdiIcons.needle),
                   errorStyle: const TextStyle(color: Colors.white, fontFamily: 'OpenSans', decorationColor: Colors.white),
                   hintText: 'Operasyon Tipi Seçiniz.',
                   hintStyle: kHintTextStyle,
