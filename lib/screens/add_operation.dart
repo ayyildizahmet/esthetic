@@ -15,14 +15,23 @@ class AddOperationScreen extends StatefulWidget {
 }
 
 class _AddOperationScreen extends State<AddOperationScreen> {
+  String result = "";
   ApiService api = ApiService();
   List<ClinicResponseModel> clinics = <ClinicResponseModel>[];
 
-  _getClinics() => api.getClinics().then((response) {
+  _getClinics() async {
+    try {
+      return api.getClinics().then((response) {
         setState(() {
           clinics = response;
         });
       });
+    } catch (e) {
+      setState(() {
+        result = e.toString();
+      });
+    }
+  }
 
   @override
   initState() {
@@ -85,7 +94,7 @@ class _AddOperationScreen extends State<AddOperationScreen> {
               ),
             ),
             Text(
-              'Clinic Item count = ' + clinics.length.toString(),
+              'Clinic api result  = ' + result,
             ),
           ],
         ));
