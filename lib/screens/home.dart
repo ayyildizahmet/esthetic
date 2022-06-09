@@ -21,10 +21,10 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   final List<Widget> _children = [
-    ActivityScreen(),
-    ShopScreen(),
-    ForumScreen(),
-    ProfileScreen(),
+    const ActivityScreen(),
+    const ShopScreen(),
+    const ForumScreen(),
+    const ProfileScreen(),
   ];
 
   @override

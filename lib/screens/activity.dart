@@ -1,4 +1,5 @@
 import 'package:esthetic/widgets/bubble_stories.dart';
+import 'package:esthetic/screens/add_operation.dart';
 import 'package:flutter/material.dart';
 import 'package:esthetic/data/api.dart';
 import 'package:esthetic/data/model/story_bubble_response_model.dart';
@@ -37,10 +38,16 @@ class _ActivityScreen extends State<ActivityScreen> {
           children: [
             const Text('Estegram', style: TextStyle(color: Colors.black)),
             Row(
-              children: const [
-                Icon(Icons.add, color: Colors.black),
-                Padding(padding: EdgeInsets.all(24), child: Icon(Icons.favorite, color: Colors.black)),
-                Icon(Icons.share, color: Colors.black)
+              children: <Widget>[
+                IconButton(
+                  icon: const Icon(Icons.add),
+                  highlightColor: Colors.black,
+                  onPressed: () => {
+                    Navigator.push(context, MaterialPageRoute(builder: (signUpContext) => const AddOperationScreen()))
+                  },
+                ),
+                const Padding(padding: EdgeInsets.all(24), child: Icon(Icons.favorite, color: Colors.black)),
+                const Icon(Icons.share, color: Colors.black)
               ],
             )
           ],
