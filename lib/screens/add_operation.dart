@@ -35,6 +35,7 @@ class _AddOperationScreen extends State<AddOperationScreen> {
   @override
   initState() {
     _getClinics();
+    _getOperationTypes();
     super.initState();
   }
 
