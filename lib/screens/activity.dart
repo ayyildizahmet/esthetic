@@ -41,7 +41,8 @@ class _ActivityScreen extends State<ActivityScreen> {
               children: <Widget>[
                 IconButton(
                   icon: const Icon(Icons.add),
-                  highlightColor: Colors.black,
+                  color: Colors.black,
+                  highlightColor: Colors.grey[300],
                   onPressed: () => {
                     Navigator.push(context, MaterialPageRoute(builder: (signUpContext) => const AddOperationScreen()))
                   },

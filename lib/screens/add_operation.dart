@@ -56,9 +56,6 @@ class _AddOperationScreen extends State<AddOperationScreen> {
               decoration: kBoxDecorationStyle,
               height: 60.0,
               child: DropdownButtonFormField(
-                //validator: emailValidator,
-                //onChanged: (input) => _email = input, //input,
-                //keyboardType: TextInputType.emailAddress,
                 items: clinics
                     .map(
                       (e) => DropdownMenuItem(
@@ -68,7 +65,7 @@ class _AddOperationScreen extends State<AddOperationScreen> {
                     )
                     .toList(),
                 onChanged: (value) {
-                  print(value.toString());
+                  //print(value.toString());
                 },
                 style: const TextStyle(
                   color: Colors.white,
@@ -86,6 +83,10 @@ class _AddOperationScreen extends State<AddOperationScreen> {
                   hintStyle: kHintTextStyle,
                 ),
               ),
+            ),
+            Text(
+              'Clinic Item count = ' + clinics.length.toString(),
+              style: kLabelStyle,
             ),
           ],
         ));
