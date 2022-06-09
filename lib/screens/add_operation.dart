@@ -72,7 +72,7 @@ class _AddOperationScreen extends State<AddOperationScreen> {
                   //print(value.toString());
                 },
                 style: const TextStyle(
-                  color: Colors.white,
+                  color: Colors.blue,
                   fontFamily: 'OpenSans',
                 ),
                 decoration: InputDecoration(
