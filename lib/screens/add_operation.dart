@@ -3,7 +3,6 @@ import 'package:esthetic/data/model/clinic_get_list_response_model.dart';
 import 'package:esthetic/data/model/operation_type_response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:esthetic/utilities/constants.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class AddOperationScreen extends StatefulWidget {
   const AddOperationScreen({Key? key}) : super(key: key);
@@ -88,7 +87,10 @@ class _AddOperationScreen extends State<AddOperationScreen> {
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   contentPadding: const EdgeInsets.only(top: 14.0),
-                  prefixIcon: const Icon(MdiIcons.domain),
+                  prefixIcon: const Icon(
+                    Icons.domain,
+                    color: Colors.white,
+                  ),
                   errorStyle: const TextStyle(color: Colors.white, fontFamily: 'OpenSans', decorationColor: Colors.white),
                   hintText: 'Klinik Seçiniz.',
                   hintStyle: kHintTextStyle,
@@ -123,7 +125,10 @@ class _AddOperationScreen extends State<AddOperationScreen> {
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   contentPadding: const EdgeInsets.only(top: 14.0),
-                  prefixIcon: const Icon(MdiIcons.needle),
+                  prefixIcon: const Icon(
+                    Icons.settings,
+                    color: Colors.white,
+                  ),
                   errorStyle: const TextStyle(color: Colors.white, fontFamily: 'OpenSans', decorationColor: Colors.white),
                   hintText: 'Operasyon Tipi Seçiniz.',
                   hintStyle: kHintTextStyle,
