@@ -24,6 +24,7 @@ class _AddOperationScreen extends State<AddOperationScreen> {
       return api.getClinics().then((response) {
         setState(() {
           clinics = response;
+          result = "try çalıştı";
         });
       });
     } catch (e) {
