@@ -7,13 +7,13 @@ import 'dart:convert';
 //     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class ClinicResponseModel {
-  //int? id;
+  String? id;
   String? name;
   //String? logoUrl;
 
-  ClinicResponseModel({this.name});
+  ClinicResponseModel({this.id, this.name});
 
-  factory ClinicResponseModel.fromJson(Map<String, dynamic> json) => ClinicResponseModel(name: json["name"]);
+  factory ClinicResponseModel.fromJson(Map<String, dynamic> json) => ClinicResponseModel(id: json["id"], name: json["name"]);
 
   // Map<String, dynamic> toJson() => {"name": name, "logoUrl": logoUrl};
 }

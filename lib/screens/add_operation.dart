@@ -64,7 +64,7 @@ class _AddOperationScreen extends State<AddOperationScreen> {
                               color: Colors.white,
                               fontFamily: 'OpenSans',
                             )),
-                        value: e.name,
+                        value: e.id,
                       ),
                     )
                     .toList(),
