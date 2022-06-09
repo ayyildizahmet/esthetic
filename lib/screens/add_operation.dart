@@ -48,7 +48,7 @@ class _AddOperationScreen extends State<AddOperationScreen> {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text('Add Operation Record', style: TextStyle(color: Colors.black)),
+              const Text('Operasyon Kaydı Ekle', style: TextStyle(color: Colors.black)),
             ],
           ),
         ),
