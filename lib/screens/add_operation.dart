@@ -86,7 +86,6 @@ class _AddOperationScreen extends State<AddOperationScreen> {
             ),
             Text(
               'Clinic Item count = ' + clinics.length.toString(),
-              style: kLabelStyle,
             ),
           ],
         ));
