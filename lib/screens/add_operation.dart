@@ -1,7 +1,9 @@
 import 'package:esthetic/data/api.dart';
 import 'package:esthetic/data/model/clinic_get_list_response_model.dart';
 import 'package:esthetic/data/model/operation_type_response_model.dart';
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:esthetic/utilities/constants.dart';
 
 class AddOperationScreen extends StatefulWidget {
@@ -13,6 +15,7 @@ class AddOperationScreen extends StatefulWidget {
 
 class _AddOperationScreen extends State<AddOperationScreen> {
   ApiService api = ApiService();
+  final format = DateFormat("yyyy-MM-dd");
   List<ClinicResponseModel> clinics = <ClinicResponseModel>[];
   List<OperationTypeResponseModel> operationTypes = <OperationTypeResponseModel>[];
 
@@ -134,6 +137,14 @@ class _AddOperationScreen extends State<AddOperationScreen> {
                   hintStyle: kHintTextStyle,
                 ),
               ),
+            ),
+            const SizedBox(height: 10.0),
+            Text('Basic date field (${format.pattern})'),
+            DateTimeField(
+              format: format,
+              onShowPicker: (context, currentValue) {
+                return showDatePicker(context: context, firstDate: DateTime(1900), initialDate: currentValue ?? DateTime.now(), lastDate: DateTime(2100));
+              },
             ),
           ],
         ));
