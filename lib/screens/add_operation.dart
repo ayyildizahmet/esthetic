@@ -24,7 +24,11 @@ class _AddOperationScreen extends State<AddOperationScreen> {
         });
       });
 
-  void BindClinicsData() {}
+  @override
+  initState() {
+    _getClinics();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
