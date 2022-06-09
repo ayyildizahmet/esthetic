@@ -2,10 +2,6 @@ import 'package:esthetic/data/api.dart';
 import 'package:esthetic/data/model/clinic_get_list_response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:esthetic/utilities/constants.dart';
-import 'package:esthetic/utilities/local_storage.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:form_field_validator/form_field_validator.dart';
-import 'package:flutter/material.dart';
 
 class AddOperationScreen extends StatefulWidget {
   const AddOperationScreen({Key? key}) : super(key: key);
@@ -15,29 +11,22 @@ class AddOperationScreen extends StatefulWidget {
 }
 
 class _AddOperationScreen extends State<AddOperationScreen> {
-  String result = "";
   ApiService api = ApiService();
   List<ClinicResponseModel> clinics = <ClinicResponseModel>[];
 
-  _getClinics() async {
+  _getClinics() {
     try {
       return api.getClinics().then((response) {
         setState(() {
           clinics = response;
-          result = "try çalıştı";
         });
       });
-    } catch (e) {
-      setState(() {
-        result = e.toString();
-      });
-    }
+    } catch (e) {}
   }
 
   @override
-  initState() async {
-    result = "initState çalıştı";
-    await _getClinics();
+  initState() {
+    _getClinics();
     super.initState();
   }
 
@@ -70,7 +59,11 @@ class _AddOperationScreen extends State<AddOperationScreen> {
                 items: clinics
                     .map(
                       (e) => DropdownMenuItem(
-                        child: Text(e.name ?? ""),
+                        child: Text(e.name ?? "",
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'OpenSans',
+                            )),
                         value: e.name,
                       ),
                     )
@@ -85,7 +78,7 @@ class _AddOperationScreen extends State<AddOperationScreen> {
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   contentPadding: const EdgeInsets.only(top: 14.0),
-                  prefixIcon: Icon(
+                  prefixIcon: const Icon(
                     Icons.home,
                     color: Colors.white,
                   ),
@@ -94,9 +87,6 @@ class _AddOperationScreen extends State<AddOperationScreen> {
                   hintStyle: kHintTextStyle,
                 ),
               ),
-            ),
-            Text(
-              'Clinic api result  = ' + result,
             ),
           ],
         ));
