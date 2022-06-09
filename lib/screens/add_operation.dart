@@ -139,12 +139,34 @@ class _AddOperationScreen extends State<AddOperationScreen> {
               ),
             ),
             const SizedBox(height: 10.0),
-            Text('Basic date field (${format.pattern})'),
-            DateTimeField(
-              format: format,
-              onShowPicker: (context, currentValue) {
-                return showDatePicker(context: context, firstDate: DateTime(1900), initialDate: currentValue ?? DateTime.now(), lastDate: DateTime(2100));
-              },
+            Container(
+              alignment: Alignment.centerLeft,
+              decoration: kBoxDecorationStyle,
+              height: 60.0,
+              child: DateTimeField(
+                format: format,
+                onShowPicker: (context, currentValue) {
+                  return showDatePicker(context: context, firstDate: DateTime(1900), initialDate: currentValue ?? DateTime.now(), lastDate: DateTime(2100));
+                },
+                onChanged: (value) {
+                  //print(value.toString());
+                },
+                style: const TextStyle(
+                  color: Colors.blue,
+                  fontFamily: 'OpenSans',
+                ),
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  contentPadding: const EdgeInsets.only(top: 14.0),
+                  prefixIcon: const Icon(
+                    Icons.settings,
+                    color: Colors.white,
+                  ),
+                  errorStyle: const TextStyle(color: Colors.white, fontFamily: 'OpenSans', decorationColor: Colors.white),
+                  hintText: 'Operasyon Tipi Seçiniz.',
+                  hintStyle: kHintTextStyle,
+                ),
+              ),
             ),
           ],
         ));
