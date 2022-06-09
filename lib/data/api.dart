@@ -17,7 +17,7 @@ class ApiService {
   final String signupURL = "api/auth/register";
   final String forgotPasswordURL = "api/auth/forgotpassword";
   final String getCompanies = "api/company/getlist";
-  final String getOperationTypes = "api/operation/gettypes";
+  final String getOperationTypes = "api/operationtype/getlist";
 
   Future<UserLoginResponseModel> login(UserLoginRequestModel request) async {
     Response res = await post(Uri.parse(baseURL + loginURL),
@@ -101,27 +101,21 @@ class ApiService {
   }
 
   Future<List<OperationTypeResponseModel>> getOperationTypeList() async {
-    //Response res = await get(
-    //  Uri.parse(baseURL + getOperationTypes),
-    //  headers: {
-    //    "Content-Type": "application/json"
-    //  },
-    //).timeout(const Duration(seconds: 15));
-    //if (res.statusCode == 200 || res.statusCode == 400) {
-    List<OperationTypeResponseModel> operationTypes = <OperationTypeResponseModel>[];
+    Response res = await get(
+      Uri.parse(baseURL + getOperationTypes),
+      headers: {
+        "Content-Type": "application/json"
+      },
+    ).timeout(const Duration(seconds: 15));
+    if (res.statusCode == 200 || res.statusCode == 400) {
+      List<OperationTypeResponseModel> operationTypes = <OperationTypeResponseModel>[];
 
-    operationTypes.add(OperationTypeResponseModel(id: 1, name: "Saç ekimi"));
-    operationTypes.add(OperationTypeResponseModel(id: 2, name: "Kök hücre tedavisi"));
-    operationTypes.add(OperationTypeResponseModel(id: 3, name: "Prp"));
-    operationTypes.add(OperationTypeResponseModel(id: 4, name: "Botoks"));
-    operationTypes.add(OperationTypeResponseModel(id: 5, name: "Epilasyon"));
+      Iterable list = json.decode(res.body)['data'];
+      operationTypes = list.map((model) => OperationTypeResponseModel.fromJson(model)).toList();
 
-    //Iterable list = json.decode(res.body)['data'];
-    //operationTypes = list.map((model) => OperationTypeResponseModel.fromJson(model)).toList();
-
-    return operationTypes;
-    //} else {
-    //throw "Unable to retrieve get.";
-    //}
+      return operationTypes;
+    } else {
+      throw "Unable to retrieve get.";
+    }
   }
 }

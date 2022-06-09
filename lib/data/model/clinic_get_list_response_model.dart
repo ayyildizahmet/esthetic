@@ -7,7 +7,7 @@ import 'dart:convert';
 //     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class ClinicResponseModel {
-  String? id;
+  int? id;
   String? name;
   //String? logoUrl;
 
