@@ -1,5 +1,6 @@
 import 'package:esthetic/data/api.dart';
 import 'package:esthetic/data/model/clinic_get_list_response_model.dart';
+import 'package:esthetic/data/model/operation_type_response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:esthetic/utilities/constants.dart';
 
@@ -13,15 +14,22 @@ class AddOperationScreen extends StatefulWidget {
 class _AddOperationScreen extends State<AddOperationScreen> {
   ApiService api = ApiService();
   List<ClinicResponseModel> clinics = <ClinicResponseModel>[];
+  List<OperationTypeResponseModel> operationTypes = <OperationTypeResponseModel>[];
 
   _getClinics() {
-    try {
-      return api.getClinics().then((response) {
-        setState(() {
-          clinics = response;
-        });
+    return api.getClinicList().then((response) {
+      setState(() {
+        clinics = response;
       });
-    } catch (e) {}
+    });
+  }
+
+  _getOperationTypes() {
+    return api.getOperationTypeList().then((response) {
+      setState(() {
+        operationTypes = response;
+      });
+    });
   }
 
   @override
@@ -84,6 +92,44 @@ class _AddOperationScreen extends State<AddOperationScreen> {
                   ),
                   errorStyle: const TextStyle(color: Colors.white, fontFamily: 'OpenSans', decorationColor: Colors.white),
                   hintText: 'Select Clinic',
+                  hintStyle: kHintTextStyle,
+                ),
+              ),
+            ),
+            const SizedBox(height: 10.0),
+            Container(
+              alignment: Alignment.centerLeft,
+              decoration: kBoxDecorationStyle,
+              height: 60.0,
+              child: DropdownButtonFormField(
+                items: operationTypes
+                    .map(
+                      (e) => DropdownMenuItem(
+                        child: Text(e.name ?? "",
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontFamily: 'OpenSans',
+                            )),
+                        value: e.id,
+                      ),
+                    )
+                    .toList(),
+                onChanged: (value) {
+                  //print(value.toString());
+                },
+                style: const TextStyle(
+                  color: Colors.blue,
+                  fontFamily: 'OpenSans',
+                ),
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  contentPadding: const EdgeInsets.only(top: 14.0),
+                  prefixIcon: const Icon(
+                    Icons.home,
+                    color: Colors.white,
+                  ),
+                  errorStyle: const TextStyle(color: Colors.white, fontFamily: 'OpenSans', decorationColor: Colors.white),
+                  hintText: 'Select Operation Type',
                   hintStyle: kHintTextStyle,
                 ),
               ),

@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'package:esthetic/data/model/clinic_get_list_response_model.dart';
 import 'package:http/http.dart';
+import 'package:esthetic/data/model/clinic_get_list_response_model.dart';
 import 'package:esthetic/data/model/user_login_request_model.dart';
 import 'package:esthetic/data/model/user_login_response_model.dart';
 import 'package:esthetic/data/model/user_signup_request_model.dart';
@@ -8,6 +8,7 @@ import 'package:esthetic/data/model/user_signup_response_model.dart';
 import 'package:esthetic/data/model/user_forgot_password_request_model.dart';
 import 'package:esthetic/data/model/user_forgot_password_response_model.dart';
 import 'package:esthetic/data/model/story_bubble_response_model.dart';
+import 'package:esthetic/data/model/operation_type_response_model.dart';
 
 class ApiService {
   final String baseURL = "http://ayyildiz.xyz:8090/";
@@ -16,6 +17,7 @@ class ApiService {
   final String signupURL = "api/auth/register";
   final String forgotPasswordURL = "api/auth/forgotpassword";
   final String getCompanies = "api/company/getlist";
+  final String getOperationTypes = "api/operation/gettypes";
 
   Future<UserLoginResponseModel> login(UserLoginRequestModel request) async {
     Response res = await post(Uri.parse(baseURL + loginURL),
@@ -80,7 +82,7 @@ class ApiService {
     }
   }
 
-  Future<List<ClinicResponseModel>> getClinics() async {
+  Future<List<ClinicResponseModel>> getClinicList() async {
     Response res = await get(
       Uri.parse(baseURL + getCompanies),
       headers: {
@@ -96,5 +98,30 @@ class ApiService {
     } else {
       throw "Unable to retrieve get.";
     }
+  }
+
+  Future<List<OperationTypeResponseModel>> getOperationTypeList() async {
+    //Response res = await get(
+    //  Uri.parse(baseURL + getOperationTypes),
+    //  headers: {
+    //    "Content-Type": "application/json"
+    //  },
+    //).timeout(const Duration(seconds: 15));
+    //if (res.statusCode == 200 || res.statusCode == 400) {
+    List<OperationTypeResponseModel> operationTypes = <OperationTypeResponseModel>[];
+
+    operationTypes.add(OperationTypeResponseModel(id: 1, name: "Saç ekimi"));
+    operationTypes.add(OperationTypeResponseModel(id: 2, name: "Kök hücre tedavisi"));
+    operationTypes.add(OperationTypeResponseModel(id: 3, name: "Prp"));
+    operationTypes.add(OperationTypeResponseModel(id: 4, name: "Botoks"));
+    operationTypes.add(OperationTypeResponseModel(id: 5, name: "Epilasyon"));
+
+    //Iterable list = json.decode(res.body)['data'];
+    //operationTypes = list.map((model) => OperationTypeResponseModel.fromJson(model)).toList();
+
+    return operationTypes;
+    //} else {
+    //throw "Unable to retrieve get.";
+    //}
   }
 }
