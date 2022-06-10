@@ -1,5 +1,6 @@
-import 'package:esthetic/screens/home.dart';
 import 'package:flutter/material.dart';
+import 'package:esthetic/screens/home.dart';
+import 'package:esthetic/utilities/constants.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 void main() {
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Esthetic',
+      theme: ThemeData(scaffoldBackgroundColor: kBackgroundColor, primaryColor: kPrimaryColor, textTheme: Theme.of(context).textTheme.apply(bodyColor: kTextColor), visualDensity: VisualDensity.adaptivePlatformDensity),
       debugShowCheckedModeBanner: false,
       home: const HomeScreen(),
       builder: EasyLoading.init(),

@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 
+const Color kPrimaryColor = Color(0xFF6CA8F1);
+const Color kTextColor = Color(0xFF3C4046);
+const Color kBackgroundColor = Color(0xFFF9F8FD);
+
+const double kDefaultPadding = 20;
+
 final kHintTextStyle = TextStyle(
   color: Colors.white54,
   fontFamily: 'OpenSans',

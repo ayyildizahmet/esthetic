@@ -12,4 +12,8 @@ class _ForumScreen extends State<ForumScreen> {
   Widget build(BuildContext context) {
     return Scaffold(body: Center(child: Text("Forum")));
   }
+
+  AppBar buildAppBar() {
+    return AppBar(elevation: 0);
+  }
 }
