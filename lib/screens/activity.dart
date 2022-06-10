@@ -31,7 +31,7 @@ class _ActivityScreen extends State<ActivityScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.grey[100],
+        //backgroundColor: Colors.grey[100],
         elevation: 0,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
