@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:esthetic/screens/home.dart';
+import 'package:esthetic/screens/edit_profile.dart';
 import 'package:esthetic/utilities/constants.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
@@ -28,6 +28,8 @@ void configLoading() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -35,7 +37,7 @@ class MyApp extends StatelessWidget {
       title: 'Esthetic',
       theme: ThemeData(scaffoldBackgroundColor: kBackgroundColor, primaryColor: kPrimaryColor, textTheme: Theme.of(context).textTheme.apply(bodyColor: kTextColor), visualDensity: VisualDensity.adaptivePlatformDensity),
       debugShowCheckedModeBanner: false,
-      home: const HomeScreen(),
+      home: const EditProfilePage(),
       builder: EasyLoading.init(),
     );
   }
