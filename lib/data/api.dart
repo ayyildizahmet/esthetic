@@ -66,7 +66,7 @@ class ApiService {
 
   Future<List<StoryBubbleResponseModel>> getStoryBubbles() async {
     Response res = await get(
-      Uri.parse(baseURL + getCompanies),
+      Uri.parse(baseURL + getOperationTypes),
       headers: {
         "Content-Type": "application/json"
       },

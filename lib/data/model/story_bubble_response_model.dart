@@ -12,7 +12,7 @@ class StoryBubbleResponseModel {
 
   StoryBubbleResponseModel({this.name, this.logoUrl});
 
-  factory StoryBubbleResponseModel.fromJson(Map<String, dynamic> json) => StoryBubbleResponseModel(name: json["name"], logoUrl: json["logoUrl"]);
+  factory StoryBubbleResponseModel.fromJson(Map<String, dynamic> json) => StoryBubbleResponseModel(name: json["name"], logoUrl: json["image"]?["url"]);
 
   // Map<String, dynamic> toJson() => {"name": name, "logoUrl": logoUrl};
 }

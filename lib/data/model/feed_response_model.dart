@@ -10,9 +10,11 @@ class FeedResponseModel {
   String? username;
   String? profileImageUrl;
   String? content;
-  String? imageUrl;
-  String? company;
+  //List<PostMedia>? mediaList;
+  String? clinic;
+  String? operationType;
   int? viewCount;
+  int? likeCount;
   int? forumId;
 
   //FeedResponseModel({this.name, this.logoUrl});

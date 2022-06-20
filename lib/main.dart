@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:esthetic/screens/edit_profile.dart';
+import 'package:esthetic/screens/home.dart';
 import 'package:esthetic/utilities/constants.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
@@ -37,7 +37,9 @@ class MyApp extends StatelessWidget {
       title: 'Esthetic',
       theme: ThemeData(scaffoldBackgroundColor: kBackgroundColor, primaryColor: kPrimaryColor, textTheme: Theme.of(context).textTheme.apply(bodyColor: kTextColor), visualDensity: VisualDensity.adaptivePlatformDensity),
       debugShowCheckedModeBanner: false,
-      home: EditProfilePage(),
+      home: HomeScreen(
+        key: key,
+      ),
       builder: EasyLoading.init(),
     );
   }

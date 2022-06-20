@@ -9,11 +9,12 @@ import 'dart:convert';
 class OperationTypeResponseModel {
   int? id;
   String? name;
+  String? url;
   //String? logoUrl;
 
-  OperationTypeResponseModel({this.id, this.name});
+  OperationTypeResponseModel({this.id, this.name, this.url});
 
-  factory OperationTypeResponseModel.fromJson(Map<String, dynamic> json) => OperationTypeResponseModel(id: json["id"], name: json["name"]);
+  factory OperationTypeResponseModel.fromJson(Map<String, dynamic> json) => OperationTypeResponseModel(id: json["id"], name: json["name"], url: json["url"]);
 
   // Map<String, dynamic> toJson() => {"name": name, "logoUrl": logoUrl};
 }

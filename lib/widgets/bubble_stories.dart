@@ -26,7 +26,7 @@ class _BubbleStories extends State<BubbleStories> {
           const SizedBox(
             height: 10,
           ),
-          // Text(widget.name)
+          Text(widget.name)
         ],
       ),
     );
