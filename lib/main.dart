@@ -7,10 +7,10 @@ void main() {
   runApp(MyApp());
   configLoading();
 }
+
 //void main() => runApp(MyApp());
 
 void configLoading() {
-  //test
   EasyLoading.instance
     ..displayDuration = const Duration(milliseconds: 2000)
     ..indicatorType = EasyLoadingIndicatorType.fadingCircle
@@ -24,6 +24,7 @@ void configLoading() {
     ..maskColor = Colors.blue.withOpacity(0.5)
     ..userInteractions = true
     ..dismissOnTap = false;
+
   //..customAnimation = CustomAnimation();
 }
 
@@ -35,7 +36,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Esthetic',
-      theme: ThemeData(scaffoldBackgroundColor: kBackgroundColor, primaryColor: kPrimaryColor, textTheme: Theme.of(context).textTheme.apply(bodyColor: kTextColor), visualDensity: VisualDensity.adaptivePlatformDensity),
+      theme: ThemeData(
+          scaffoldBackgroundColor: kBackgroundColor,
+          primaryColor: kPrimaryColor,
+          textTheme: Theme.of(context).textTheme.apply(bodyColor: kTextColor),
+          visualDensity: VisualDensity.adaptivePlatformDensity),
       debugShowCheckedModeBanner: false,
       home: HomeScreen(
         key: key,

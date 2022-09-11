@@ -11,7 +11,7 @@ import 'package:esthetic/data/model/story_bubble_response_model.dart';
 import 'package:esthetic/data/model/operation_type_response_model.dart';
 
 class ApiService {
-  final String baseURL = "http://ayyildiz.xyz:8090/";
+  final String baseURL = "http://212.125.21.124:8090/";
 
   final String loginURL = "api/auth/login";
   final String signupURL = "api/auth/register";
@@ -21,13 +21,12 @@ class ApiService {
 
   Future<UserLoginResponseModel> login(UserLoginRequestModel request) async {
     Response res = await post(Uri.parse(baseURL + loginURL),
-            headers: {
-              "Content-Type": "application/json"
-            },
+            headers: {"Content-Type": "application/json"},
             body: jsonEncode(request))
         .timeout(const Duration(seconds: 15));
     if (res.statusCode == 200 || res.statusCode == 400) {
-      UserLoginResponseModel posts = UserLoginResponseModel.fromJson(jsonDecode(res.body));
+      UserLoginResponseModel posts =
+          UserLoginResponseModel.fromJson(jsonDecode(res.body));
       return posts;
     } else {
       throw "Unable to retrieve posts.";
@@ -36,28 +35,27 @@ class ApiService {
 
   Future<UserSignupResponseModel> signup(UserSignupRequestModel request) async {
     Response res = await post(Uri.parse(baseURL + signupURL),
-            headers: {
-              "Content-Type": "application/json"
-            },
+            headers: {"Content-Type": "application/json"},
             body: jsonEncode(request))
         .timeout(const Duration(seconds: 10));
     if (res.statusCode == 200 || res.statusCode == 400) {
-      UserSignupResponseModel posts = UserSignupResponseModel.fromJson(jsonDecode(res.body));
+      UserSignupResponseModel posts =
+          UserSignupResponseModel.fromJson(jsonDecode(res.body));
       return posts;
     } else {
       throw "Unable to retrieve posts.";
     }
   }
 
-  Future<ForgotPasswordResponseModel> forgotPassword(ForgotPasswordRequestModel request) async {
+  Future<ForgotPasswordResponseModel> forgotPassword(
+      ForgotPasswordRequestModel request) async {
     Response res = await post(Uri.parse(baseURL + forgotPasswordURL),
-            headers: {
-              "Content-Type": "application/json"
-            },
+            headers: {"Content-Type": "application/json"},
             body: jsonEncode(request))
         .timeout(const Duration(seconds: 10));
     if (res.statusCode == 200 || res.statusCode == 400) {
-      ForgotPasswordResponseModel posts = ForgotPasswordResponseModel.fromJson(jsonDecode(res.body));
+      ForgotPasswordResponseModel posts =
+          ForgotPasswordResponseModel.fromJson(jsonDecode(res.body));
       return posts;
     } else {
       throw "Unable to retrieve posts.";
@@ -67,14 +65,14 @@ class ApiService {
   Future<List<StoryBubbleResponseModel>> getStoryBubbles() async {
     Response res = await get(
       Uri.parse(baseURL + getOperationTypes),
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: {"Content-Type": "application/json"},
     ).timeout(const Duration(seconds: 15));
     if (res.statusCode == 200 || res.statusCode == 400) {
       List<StoryBubbleResponseModel> stories = <StoryBubbleResponseModel>[];
       Iterable list = json.decode(res.body)['data'];
-      stories = list.map((model) => StoryBubbleResponseModel.fromJson(model)).toList();
+      stories = list
+          .map((model) => StoryBubbleResponseModel.fromJson(model))
+          .toList();
 
       return stories;
     } else {
@@ -85,14 +83,13 @@ class ApiService {
   Future<List<ClinicResponseModel>> getClinicList() async {
     Response res = await get(
       Uri.parse(baseURL + getCompanies),
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: {"Content-Type": "application/json"},
     ).timeout(const Duration(seconds: 15));
     if (res.statusCode == 200 || res.statusCode == 400) {
       List<ClinicResponseModel> clinics = <ClinicResponseModel>[];
       Iterable list = json.decode(res.body)['data'];
-      clinics = list.map((model) => ClinicResponseModel.fromJson(model)).toList();
+      clinics =
+          list.map((model) => ClinicResponseModel.fromJson(model)).toList();
 
       return clinics;
     } else {
@@ -103,15 +100,16 @@ class ApiService {
   Future<List<OperationTypeResponseModel>> getOperationTypeList() async {
     Response res = await get(
       Uri.parse(baseURL + getOperationTypes),
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: {"Content-Type": "application/json"},
     ).timeout(const Duration(seconds: 15));
     if (res.statusCode == 200 || res.statusCode == 400) {
-      List<OperationTypeResponseModel> operationTypes = <OperationTypeResponseModel>[];
+      List<OperationTypeResponseModel> operationTypes =
+          <OperationTypeResponseModel>[];
 
       Iterable list = json.decode(res.body)['data'];
-      operationTypes = list.map((model) => OperationTypeResponseModel.fromJson(model)).toList();
+      operationTypes = list
+          .map((model) => OperationTypeResponseModel.fromJson(model))
+          .toList();
 
       return operationTypes;
     } else {
