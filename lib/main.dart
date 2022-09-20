@@ -4,7 +4,7 @@ import 'package:esthetic/utilities/constants.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
   configLoading();
 }
 

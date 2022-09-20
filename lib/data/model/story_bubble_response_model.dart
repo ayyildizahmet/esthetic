@@ -7,12 +7,14 @@ import 'dart:convert';
 //     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class StoryBubbleResponseModel {
-  String? name;
-  String? logoUrl;
+  String name;
+  String logoUrl;
 
-  StoryBubbleResponseModel({this.name, this.logoUrl});
+  StoryBubbleResponseModel({required this.name, required this.logoUrl});
 
-  factory StoryBubbleResponseModel.fromJson(Map<String, dynamic> json) => StoryBubbleResponseModel(name: json["name"], logoUrl: json["image"]?["url"]);
+  factory StoryBubbleResponseModel.fromJson(Map<String, dynamic> json) =>
+      StoryBubbleResponseModel(
+          name: json["name"], logoUrl: json["image"]?["url"]);
 
   // Map<String, dynamic> toJson() => {"name": name, "logoUrl": logoUrl};
 }

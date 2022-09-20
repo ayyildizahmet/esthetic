@@ -1,4 +1,5 @@
 import 'package:esthetic/widgets/bubble_stories.dart';
+import 'package:esthetic/widgets/post_card.dart';
 import 'package:esthetic/screens/add_operation.dart';
 import 'package:flutter/material.dart';
 import 'package:esthetic/data/api.dart';
@@ -44,13 +45,19 @@ class _ActivityScreen extends State<ActivityScreen> {
                   color: Colors.black,
                   highlightColor: Colors.grey[300],
                   onPressed: () => {
-                    Navigator.push(context, MaterialPageRoute(builder: (signUpContext) => const AddOperationScreen()))
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (signUpContext) =>
+                                const AddOperationScreen()))
                   },
                 ),
-                const Padding(padding: EdgeInsets.all(24), child: Icon(Icons.favorite, color: Colors.black)),
+                const Padding(
+                    padding: EdgeInsets.all(24),
+                    child: Icon(Icons.favorite, color: Colors.black)),
                 const Icon(Icons.share, color: Colors.black)
               ],
-            )
+            ),
           ],
         ),
       ),
@@ -62,11 +69,12 @@ class _ActivityScreen extends State<ActivityScreen> {
                 scrollDirection: Axis.horizontal,
                 itemCount: stories.length,
                 itemBuilder: (context, index) {
-                  return BubbleStories(name: stories[index].name ?? "", logoUrl: stories[index].logoUrl ?? "");
+                  return BubbleStories(
+                      name: stories[index].name,
+                      logoUrl: stories[index].logoUrl);
                 },
               )),
-          Text("First Item:" + stories[0].logoUrl.toString()),
-          // Text("response:" + stories.toString()),
+          Post()
         ],
       ),
     );

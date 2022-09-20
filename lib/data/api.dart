@@ -18,6 +18,8 @@ class ApiService {
   final String forgotPasswordURL = "api/auth/forgotpassword";
   final String getCompanies = "api/company/getlist";
   final String getOperationTypes = "api/operationtype/getlist";
+  final String getOperations = "api/operation/getlist"; //TODO
+  final String getOperation = "api/operation/get"; //TODO
 
   Future<UserLoginResponseModel> login(UserLoginRequestModel request) async {
     Response res = await post(Uri.parse(baseURL + loginURL),
@@ -90,7 +92,6 @@ class ApiService {
       Iterable list = json.decode(res.body)['data'];
       clinics =
           list.map((model) => ClinicResponseModel.fromJson(model)).toList();
-
       return clinics;
     } else {
       throw "Unable to retrieve get.";
