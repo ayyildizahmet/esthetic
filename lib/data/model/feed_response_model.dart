@@ -7,26 +7,26 @@ String userToJson(List<FeedResponseModel> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class FeedResponseModel {
-  String username;
-  String profileImageUrl;
+  String? username;
+  String? profileImageUrl;
   String? content;
-  List<String>? mediaList;
-  String clinic;
-  String operationType;
+  String? clinic;
+  String? operationType;
   int? viewCount;
   int? likeCount;
   int? forumId;
+  List<String>? mediaList;
 
   FeedResponseModel(
-      {required username,
-      required profileImageUrl,
-      required clinic,
-      required operationType,
+      {username,
+      profileImageUrl,
+      clinic,
+      operationType,
       content,
-      mediaList,
       viewCount,
       forumId,
-      likeCount});
+      likeCount,
+      mediaList});
 
   factory FeedResponseModel.fromJson(Map<String, dynamic> json) =>
       FeedResponseModel(
@@ -35,12 +35,21 @@ class FeedResponseModel {
         clinic: json["clinic"],
         operationType: json["operationType"],
         content: json["content"],
-        mediaList: json["mediaList"],
         viewCount: json["viewCount"],
         forumId: json["forumId"],
         likeCount: json["likeCount"],
+        mediaList: json["mediaList"],
       );
 
-  Map<String, dynamic> toJson() =>
-      {"username": username, "profileImageUrl": profileImageUrl};
+  Map<String, dynamic> toJson() => {
+        "username": username,
+        "profileImageUrl": profileImageUrl,
+        "clinic": clinic,
+        "operationType": operationType,
+        "content": content,
+        "viewCount": viewCount,
+        "forumId": forumId,
+        "likeCount": likeCount,
+        "mediaList": mediaList,
+      };
 }

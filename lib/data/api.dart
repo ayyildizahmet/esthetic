@@ -9,6 +9,8 @@ import 'package:esthetic/data/model/user_forgot_password_request_model.dart';
 import 'package:esthetic/data/model/user_forgot_password_response_model.dart';
 import 'package:esthetic/data/model/story_bubble_response_model.dart';
 import 'package:esthetic/data/model/operation_type_response_model.dart';
+import 'package:esthetic/data/model/feed_request_model.dart';
+import 'package:esthetic/data/model/feed_response_model.dart';
 
 class ApiService {
   final String baseURL = "http://212.125.21.124:8090/";
@@ -20,6 +22,7 @@ class ApiService {
   final String getOperationTypes = "api/operationtype/getlist";
   final String getOperations = "api/operation/getlist"; //TODO
   final String getOperation = "api/operation/get"; //TODO
+  final String getFeedPath = "api/feed/get"; //TODO
 
   Future<UserLoginResponseModel> login(UserLoginRequestModel request) async {
     Response res = await post(Uri.parse(baseURL + loginURL),
@@ -115,6 +118,19 @@ class ApiService {
       return operationTypes;
     } else {
       throw "Unable to retrieve get.";
+    }
+  }
+
+  Future<FeedResponseModel> getFeed(FeedRequestModel request) async {
+    Response res = await post(Uri.parse(baseURL + getFeedPath),
+            headers: {"Content-Type": "application/json"},
+            body: jsonEncode(request))
+        .timeout(const Duration(seconds: 15));
+    if (res.statusCode == 200 || res.statusCode == 400) {
+      FeedResponseModel feed = FeedResponseModel.fromJson(jsonDecode(res.body));
+      return feed;
+    } else {
+      throw "Unable to retrieve posts.";
     }
   }
 }
