@@ -23,6 +23,7 @@ class ApiService {
   final String getOperations = "api/operation/getlist"; //TODO
   final String getOperation = "api/operation/get"; //TODO
   final String getFeedPath = "api/feed/get"; //TODO
+  final String getFeedListPath = "api/feed/getlist"; //TODO
 
   Future<UserLoginResponseModel> login(UserLoginRequestModel request) async {
     Response res = await post(Uri.parse(baseURL + loginURL),
@@ -131,6 +132,24 @@ class ApiService {
       return feed;
     } else {
       throw "Unable to retrieve posts.";
+    }
+  }
+
+  Future<List<FeedResponseModel>> getFeedList(FeedRequestModel request) async {
+    Response res = await post(Uri.parse(baseURL + getFeedListPath),
+            headers: {"Content-Type": "application/json"},
+            body: jsonEncode(request))
+        .timeout(const Duration(seconds: 15));
+    if (res.statusCode == 200 || res.statusCode == 400) {
+      List<FeedResponseModel> feedList = <FeedResponseModel>[];
+
+      Iterable list = json.decode(res.body)['data'];
+      feedList =
+          list.map((model) => FeedResponseModel.fromJson(model)).toList();
+
+      return feedList;
+    } else {
+      throw "Unable to retrieve get.";
     }
   }
 }
