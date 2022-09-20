@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:esthetic/data/model/operation_type_response_model.dart';
 
 List<FeedResponseModel> userFromJson(String str) =>
     List<FeedResponseModel>.from(
@@ -11,7 +12,7 @@ class FeedResponseModel {
   String? profileImageUrl;
   String? content;
   String? clinic;
-  String? operationType;
+  OperationTypeResponseModel? operationType;
   int? viewCount;
   int? likeCount;
   int? forumId;

@@ -136,20 +136,56 @@ class ApiService {
   }
 
   Future<List<FeedResponseModel>> getFeedList(FeedRequestModel request) async {
-    Response res = await post(Uri.parse(baseURL + getFeedListPath),
-            headers: {"Content-Type": "application/json"},
-            body: jsonEncode(request))
-        .timeout(const Duration(seconds: 15));
-    if (res.statusCode == 200 || res.statusCode == 400) {
-      List<FeedResponseModel> feedList = <FeedResponseModel>[];
+    //Response res = await post(Uri.parse(baseURL + getFeedListPath), headers: {"Content-Type": "application/json"}, body: jsonEncode(request)).timeout(const Duration(seconds: 15));
+    //if (res.statusCode == 200 || res.statusCode == 400) {
+    List<FeedResponseModel> feedList = <FeedResponseModel>[];
+    feedList.add(new FeedResponseModel(
+        clinic: "Esteworld",
+        content: "",
+        forumId: 0,
+        likeCount: 0,
+        operationType: new OperationTypeResponseModel(id: 1, name: "Saç Ekimi"),
+        username: "",
+        viewCount: 0,
+        profileImageUrl: "",
+        mediaList: ["", "", ""]));
+    feedList.add(new FeedResponseModel(
+        clinic: "Akl Klinik",
+        content: "",
+        forumId: 0,
+        likeCount: 0,
+        operationType: new OperationTypeResponseModel(id: 1, name: "Saç Ekimi"),
+        username: "",
+        viewCount: 0,
+        profileImageUrl: "",
+        mediaList: ["", "", ""]));
+    feedList.add(new FeedResponseModel(
+        clinic: "Este Center",
+        content: "",
+        forumId: 0,
+        likeCount: 0,
+        operationType: new OperationTypeResponseModel(id: 1, name: "Saç Ekimi"),
+        username: "",
+        viewCount: 0,
+        profileImageUrl: "",
+        mediaList: ["", "", ""]));
+    feedList.add(new FeedResponseModel(
+        clinic: "Estemylife",
+        content: "",
+        forumId: 0,
+        likeCount: 0,
+        operationType: 1,
+        username: "",
+        viewCount: 0,
+        profileImageUrl: "",
+        mediaList: ["", "", ""]));
+    //Iterable list = json.decode(res.body)['data'];
+    //feedList = list.map((model) => FeedResponseModel.fromJson(model)).toList();
 
-      Iterable list = json.decode(res.body)['data'];
-      feedList =
-          list.map((model) => FeedResponseModel.fromJson(model)).toList();
-
-      return feedList;
-    } else {
-      throw "Unable to retrieve get.";
-    }
+    return feedList;
   }
+  //else {
+  //  throw "Unable to retrieve get.";
+  //}
+  //}
 }
