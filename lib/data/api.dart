@@ -139,45 +139,49 @@ class ApiService {
     //Response res = await post(Uri.parse(baseURL + getFeedListPath), headers: {"Content-Type": "application/json"}, body: jsonEncode(request)).timeout(const Duration(seconds: 15));
     //if (res.statusCode == 200 || res.statusCode == 400) {
     List<FeedResponseModel> feedList = <FeedResponseModel>[];
-    feedList.add(new FeedResponseModel(
+    feedList.add(FeedResponseModel(
         clinic: "Esteworld",
         content: "",
         forumId: 0,
-        likeCount: 0,
-        operationType: new OperationTypeResponseModel(id: 1, name: "Saç Ekimi"),
-        username: "",
-        viewCount: 0,
-        profileImageUrl: "",
+        likeCount: 10,
+        operationType: OperationTypeResponseModel(id: 1, name: "Saç Ekimi"),
+        username: "test user1",
+        viewCount: 3860,
+        profileImageUrl:
+            "https://icons.iconarchive.com/icons/graphicloads/medical-health/256/hospital-icon.png",
         mediaList: ["", "", ""]));
-    feedList.add(new FeedResponseModel(
+    feedList.add(FeedResponseModel(
         clinic: "Akl Klinik",
         content: "",
         forumId: 0,
-        likeCount: 0,
-        operationType: new OperationTypeResponseModel(id: 1, name: "Saç Ekimi"),
-        username: "",
-        viewCount: 0,
-        profileImageUrl: "",
+        likeCount: 20,
+        operationType: OperationTypeResponseModel(id: 1, name: "Saç Ekimi"),
+        username: "test user2",
+        viewCount: 3450,
+        profileImageUrl:
+            "https://icons.iconarchive.com/icons/dapino/medical/256/hospital-icon.png",
         mediaList: ["", "", ""]));
-    feedList.add(new FeedResponseModel(
+    feedList.add(FeedResponseModel(
         clinic: "Este Center",
         content: "",
         forumId: 0,
-        likeCount: 0,
-        operationType: new OperationTypeResponseModel(id: 1, name: "Saç Ekimi"),
-        username: "",
-        viewCount: 0,
-        profileImageUrl: "",
+        likeCount: 18,
+        operationType: OperationTypeResponseModel(id: 1, name: "Saç Ekimi"),
+        username: "test user3",
+        viewCount: 320,
+        profileImageUrl:
+            "https://icons.iconarchive.com/icons/medicalwp/medical/256/Hospital-blue-icon.png",
         mediaList: ["", "", ""]));
-    feedList.add(new FeedResponseModel(
+    feedList.add(FeedResponseModel(
         clinic: "Estemylife",
         content: "",
         forumId: 0,
-        likeCount: 0,
-        operationType: 1,
-        username: "",
-        viewCount: 0,
-        profileImageUrl: "",
+        likeCount: 36,
+        operationType: OperationTypeResponseModel(id: 1, name: "Saç Ekimi"),
+        username: "test user4",
+        viewCount: 220,
+        profileImageUrl:
+            "https://icons.iconarchive.com/icons/streamlineicons/streamline-ux-free/256/doctor-hospital-icon.png",
         mediaList: ["", "", ""]));
     //Iterable list = json.decode(res.body)['data'];
     //feedList = list.map((model) => FeedResponseModel.fromJson(model)).toList();
