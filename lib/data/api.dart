@@ -141,40 +141,49 @@ class ApiService {
     List<FeedResponseModel> feedList = <FeedResponseModel>[];
     feedList.add(FeedResponseModel(
         clinic: "Esteworld",
-        content: "",
-        forumId: 0,
+        content: "Hair Transplant",
+        forumId: 50,
         likeCount: 10,
         operationType: OperationTypeResponseModel(id: 1, name: "Saç Ekimi"),
         username: "test user1",
         viewCount: 3860,
         profileImageUrl:
             "https://icons.iconarchive.com/icons/graphicloads/medical-health/256/hospital-icon.png",
-        mediaList: ["", "", ""]));
+        mediaList: [
+          "https://natural.clinic/wp-content/uploads/2021/08/hair-transplant-before-after.jpg",
+          "https://natural.clinic/wp-content/uploads/2021/08/hair-transplant-before-after-2.jpg"
+        ]));
     feedList.add(FeedResponseModel(
         clinic: "Akl Klinik",
-        content: "",
-        forumId: 0,
+        content: "Hair Transplant",
+        forumId: 30,
         likeCount: 20,
         operationType: OperationTypeResponseModel(id: 1, name: "Saç Ekimi"),
         username: "test user2",
         viewCount: 3450,
         profileImageUrl:
             "https://icons.iconarchive.com/icons/dapino/medical/256/hospital-icon.png",
-        mediaList: ["", "", ""]));
+        mediaList: [
+          "https://natural.clinic/wp-content/uploads/2021/08/hair-transplant-before-after-4.jpg",
+          "https://natural.clinic/wp-content/uploads/2021/08/hair-transplant-before-after-3.jpg"
+        ]));
     feedList.add(FeedResponseModel(
         clinic: "Este Center",
-        content: "",
-        forumId: 0,
+        content: "Hair Transplant",
+        forumId: 20,
         likeCount: 18,
         operationType: OperationTypeResponseModel(id: 1, name: "Saç Ekimi"),
         username: "test user3",
         viewCount: 320,
         profileImageUrl:
             "https://icons.iconarchive.com/icons/medicalwp/medical/256/Hospital-blue-icon.png",
-        mediaList: ["", "", ""]));
+        mediaList: [
+          "https://natural.clinic/wp-content/uploads/2021/08/hair-transplant-before-after-6.jpg",
+          "https://natural.clinic/wp-content/uploads/2021/08/hair-transplant-before-after-5.jpg"
+        ]));
     feedList.add(FeedResponseModel(
         clinic: "Estemylife",
-        content: "",
+        content: "Face Lift Operation",
         forumId: 0,
         likeCount: 36,
         operationType: OperationTypeResponseModel(id: 1, name: "Saç Ekimi"),
@@ -182,7 +191,10 @@ class ApiService {
         viewCount: 220,
         profileImageUrl:
             "https://icons.iconarchive.com/icons/streamlineicons/streamline-ux-free/256/doctor-hospital-icon.png",
-        mediaList: ["", "", ""]));
+        mediaList: [
+          "https://natural.clinic/wp-content/uploads/2021/06/facelift-9.png",
+          "https://natural.clinic/wp-content/uploads/2021/06/facelift-10.png"
+        ]));
     //Iterable list = json.decode(res.body)['data'];
     //feedList = list.map((model) => FeedResponseModel.fromJson(model)).toList();
 
