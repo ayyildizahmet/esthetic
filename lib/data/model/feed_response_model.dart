@@ -8,6 +8,7 @@ String userToJson(List<FeedResponseModel> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class FeedResponseModel {
+  int? id;
   String? username;
   String? profileImageUrl;
   String? content;
@@ -19,7 +20,8 @@ class FeedResponseModel {
   List<String>? mediaList;
 
   FeedResponseModel(
-      {username,
+      {id,
+      username,
       profileImageUrl,
       clinic,
       operationType,
@@ -31,6 +33,7 @@ class FeedResponseModel {
 
   factory FeedResponseModel.fromJson(Map<String, dynamic> json) =>
       FeedResponseModel(
+        id: json["id"],
         username: json["username"],
         profileImageUrl: json["profileImageUrl"],
         clinic: json["clinic"],
@@ -43,6 +46,7 @@ class FeedResponseModel {
       );
 
   Map<String, dynamic> toJson() => {
+        "id": id,
         "username": username,
         "profileImageUrl": profileImageUrl,
         "clinic": clinic,

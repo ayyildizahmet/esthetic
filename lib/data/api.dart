@@ -123,23 +123,25 @@ class ApiService {
   }
 
   Future<FeedResponseModel> getFeed(FeedRequestModel request) async {
-    Response res = await post(Uri.parse(baseURL + getFeedPath),
-            headers: {"Content-Type": "application/json"},
-            body: jsonEncode(request))
-        .timeout(const Duration(seconds: 15));
-    if (res.statusCode == 200 || res.statusCode == 400) {
-      FeedResponseModel feed = FeedResponseModel.fromJson(jsonDecode(res.body));
-      return feed;
-    } else {
-      throw "Unable to retrieve posts.";
-    }
+    //Response res = await post(Uri.parse(baseURL + getFeedPath),
+    //        headers: {"Content-Type": "application/json"},
+    //        body: jsonEncode(request))
+    //    .timeout(const Duration(seconds: 15));
+    //if (res.statusCode == 200 || res.statusCode == 400) {
+    //  FeedResponseModel feed = FeedResponseModel.fromJson(jsonDecode(res.body));
+    List<FeedResponseModel> feeds = await getFeedList();
+    return feeds.firstWhere((element) => element.id == request.id);
+    //} else {
+    //  throw "Unable to retrieve posts.";
+    // }
   }
 
-  Future<List<FeedResponseModel>> getFeedList(FeedRequestModel request) async {
+  Future<List<FeedResponseModel>> getFeedList() async {
     //Response res = await post(Uri.parse(baseURL + getFeedListPath), headers: {"Content-Type": "application/json"}, body: jsonEncode(request)).timeout(const Duration(seconds: 15));
     //if (res.statusCode == 200 || res.statusCode == 400) {
     List<FeedResponseModel> feedList = <FeedResponseModel>[];
     feedList.add(FeedResponseModel(
+        id: 1,
         clinic: "Esteworld",
         content: "Hair Transplant",
         forumId: 50,
@@ -154,6 +156,7 @@ class ApiService {
           "https://natural.clinic/wp-content/uploads/2021/08/hair-transplant-before-after-2.jpg"
         ]));
     feedList.add(FeedResponseModel(
+        id: 2,
         clinic: "Akl Klinik",
         content: "Hair Transplant",
         forumId: 30,
@@ -168,6 +171,7 @@ class ApiService {
           "https://natural.clinic/wp-content/uploads/2021/08/hair-transplant-before-after-3.jpg"
         ]));
     feedList.add(FeedResponseModel(
+        id: 3,
         clinic: "Este Center",
         content: "Hair Transplant",
         forumId: 20,
@@ -182,6 +186,7 @@ class ApiService {
           "https://natural.clinic/wp-content/uploads/2021/08/hair-transplant-before-after-5.jpg"
         ]));
     feedList.add(FeedResponseModel(
+        id: 4,
         clinic: "Estemylife",
         content: "Face Lift Operation",
         forumId: 0,
@@ -197,7 +202,6 @@ class ApiService {
         ]));
     //Iterable list = json.decode(res.body)['data'];
     //feedList = list.map((model) => FeedResponseModel.fromJson(model)).toList();
-
     return feedList;
   }
   //else {

@@ -4,6 +4,7 @@ import 'package:esthetic/screens/add_operation.dart';
 import 'package:flutter/material.dart';
 import 'package:esthetic/data/api.dart';
 import 'package:esthetic/data/model/story_bubble_response_model.dart';
+import 'package:esthetic/data/model/feed_response_model.dart';
 
 class ActivityScreen extends StatefulWidget {
   const ActivityScreen({Key? key}) : super(key: key);
@@ -15,6 +16,7 @@ class ActivityScreen extends StatefulWidget {
 class _ActivityScreen extends State<ActivityScreen> {
   ApiService api = ApiService();
   List<StoryBubbleResponseModel> stories = <StoryBubbleResponseModel>[];
+  List<FeedResponseModel> feeds = <FeedResponseModel>[];
 
   _getStoryBubbles() => api.getStoryBubbles().then((response) {
         setState(() {
@@ -22,9 +24,16 @@ class _ActivityScreen extends State<ActivityScreen> {
         });
       });
 
+  _getFeeds() => api.getFeedList().then((response2) {
+        setState(() {
+          feeds = response2;
+        });
+      });
+
   @override
   initState() {
     _getStoryBubbles();
+    _getFeeds();
     super.initState();
   }
 
@@ -74,7 +83,17 @@ class _ActivityScreen extends State<ActivityScreen> {
                       logoUrl: stories[index].logoUrl);
                 },
               )),
-          Post()
+          SizedBox(
+              height: 500,
+              child: ListView.builder(
+                scrollDirection: Axis.vertical,
+                itemCount: feeds.length,
+                itemBuilder: (context, index) {
+                  return Post(
+                    feed: feeds[index],
+                  );
+                },
+              )),
         ],
       ),
     );
